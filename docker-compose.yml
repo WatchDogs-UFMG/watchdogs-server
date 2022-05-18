@@ -1,0 +1,27 @@
+version: "3.8"
+services:
+  watchdogs_mariadb_db:
+    image: mariadb:10.5.8
+    restart: unless-stopped
+    env_file: ./.env
+    environment:
+      - MYSQL_ROOT_PASSWORD=$MARIADB_ROOT_PASSWORD
+      - MYSQL_DATABASE=$MARIADB_DATABASE
+    ports:
+      - $MARIADB_LOCAL_PORT:$MARIADB_DOCKER_PORT
+    volumes:
+      - db:/var/lib/mariadb
+  watchdogs_app:
+    depends_on:
+      - watchdogs_mariadb_db
+    build: .
+    restart: on-failure
+    env_file: ./.env
+    ports:
+      - $WATCHDOGS_APP_LOCAL_PORT:$WATCHDOGS_APP_DOCKER_PORT
+    volumes:
+      - .m2:/root/.m2
+    stdin_open: true
+    tty: true
+volumes:
+  db:

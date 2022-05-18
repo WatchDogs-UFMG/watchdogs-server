@@ -1,0 +1,17 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:db
+    username: sa
+    password: sa
+    driverClassName: org.mariadb.jdbc.Driver
+  jpa:
+    database-platform: org.h2.Driver
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+    hibernate:
+      ddl-auto: update
+  jackson:
+    date-format: dd/MM/yyyy HH:mm:ss
+    time-zone: America/Sao_Paulo
