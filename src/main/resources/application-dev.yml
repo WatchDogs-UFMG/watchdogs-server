@@ -15,3 +15,6 @@ spring:
   jackson:
     date-format: dd/MM/yyyy HH:mm:ss
     time-zone: America/Sao_Paulo
+mqtt:
+  broker:
+    url: tcp://127.0.0.1:7892
