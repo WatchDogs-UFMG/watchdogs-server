@@ -1,0 +1,14 @@
+version: "3.8"
+services:
+  watchdogs_mqtt_broker:
+    image: eclipse-mosquitto
+    restart: always
+    read_only: false
+    volumes:
+      - ../config:/mosquitto/config
+      - ../data:/mosquitto/data
+      - ../log:/mosquitto/log
+    ports:
+      - 7893:1883
+volumes:
+  db:

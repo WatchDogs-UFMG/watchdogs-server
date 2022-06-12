@@ -1,6 +1,6 @@
 package br.ufmg.watchdogs.server;
 
-import br.ufmg.watchdogs.server.mqtt.MqttClientConnection;
+import br.ufmg.watchdogs.server.mqtt.client.impl.MqttClientConnectorPahoImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -10,11 +10,11 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 public class WatchdogsServerApplication {
 
-	private static MqttClientConnection mqttClientConnection;
+	private static MqttClientConnectorPahoImpl mqttClientConnector;
 
 	@Autowired
-	public WatchdogsServerApplication(MqttClientConnection mqttClientConnection) {
-		this.mqttClientConnection = mqttClientConnection;
+	public WatchdogsServerApplication(MqttClientConnectorPahoImpl mqttClientConnector) {
+		WatchdogsServerApplication.mqttClientConnector = mqttClientConnector;
 	}
 
 	public static void main(String[] args) {
@@ -22,6 +22,6 @@ public class WatchdogsServerApplication {
 		SpringApplication.run(WatchdogsServerApplication.class, args);
 		System.out.println("\nApplication launched successfully!!!\n");
 
-		WatchdogsServerApplication.mqttClientConnection.keepSendingTestMessages();
+		WatchdogsServerApplication.mqttClientConnector.keepSendingTestMessages();
 	}
 }
