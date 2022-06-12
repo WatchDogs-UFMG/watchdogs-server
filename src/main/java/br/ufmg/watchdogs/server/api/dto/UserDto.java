@@ -1,8 +1,8 @@
 package br.ufmg.watchdogs.server.api.dto;
 
 import br.ufmg.watchdogs.server.api.model.User;
-import br.ufmg.watchdogs.server.util.MyDateFormatterUtil;
-import br.ufmg.watchdogs.server.util.MyDateTimeFormatterUtil;
+import br.ufmg.watchdogs.server.api.util.MyDateFormatterUtil;
+import br.ufmg.watchdogs.server.api.util.MyDateTimeFormatterUtil;
 
 public class UserDto {
 

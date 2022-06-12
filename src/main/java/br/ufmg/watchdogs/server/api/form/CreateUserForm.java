@@ -3,7 +3,7 @@ package br.ufmg.watchdogs.server.api.form;
 import br.ufmg.watchdogs.server.api.exception.MyDataNotFoundException;
 import br.ufmg.watchdogs.server.api.model.Profile;
 import br.ufmg.watchdogs.server.api.model.User;
-import br.ufmg.watchdogs.server.util.MyDateFormatterUtil;
+import br.ufmg.watchdogs.server.api.util.MyDateFormatterUtil;
 
 import javax.validation.constraints.*;
 import java.time.LocalDate;

@@ -1,4 +1,4 @@
-package br.ufmg.watchdogs.server.util;
+package br.ufmg.watchdogs.server.api.util;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;

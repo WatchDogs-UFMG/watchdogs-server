@@ -1,7 +1,7 @@
 package br.ufmg.watchdogs.server.api.exception;
 
-import br.ufmg.watchdogs.server.util.MyDateTimeFormatterUtil;
-import br.ufmg.watchdogs.server.util.MyStringStackTraceUtil;
+import br.ufmg.watchdogs.server.api.util.MyDateTimeFormatterUtil;
+import br.ufmg.watchdogs.server.api.util.MyStringStackTraceUtil;
 
 import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDateTime;

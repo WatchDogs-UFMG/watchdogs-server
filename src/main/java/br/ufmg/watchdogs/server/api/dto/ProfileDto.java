@@ -1,7 +1,7 @@
 package br.ufmg.watchdogs.server.api.dto;
 
 import br.ufmg.watchdogs.server.api.model.Profile;
-import br.ufmg.watchdogs.server.util.MyDateTimeFormatterUtil;
+import br.ufmg.watchdogs.server.api.util.MyDateTimeFormatterUtil;
 
 public class ProfileDto {
 

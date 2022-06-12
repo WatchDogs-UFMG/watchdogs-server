@@ -1,4 +1,4 @@
-package br.ufmg.watchdogs.server.util;
+package br.ufmg.watchdogs.server.api.util;
 
 import java.time.format.DateTimeFormatter;
 
