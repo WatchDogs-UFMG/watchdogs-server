@@ -1,6 +1,6 @@
 package br.ufmg.watchdogs.server.mqtt.downlink.payload.parser.impl;
 
-import br.ufmg.watchdogs.server.mqtt.downlink.payload.impl.MqttDownLinkFrameTypeImpl;
+import br.ufmg.watchdogs.server.mqtt.downlink.payload.MqttDownLinkFrameType;
 import br.ufmg.watchdogs.server.mqtt.downlink.payload.parser.MqttDownLinkHeaderParser;
 import br.ufmg.watchdogs.server.mqtt.protocol.FirmwareVersion;
 import br.ufmg.watchdogs.server.mqtt.protocol.ProtocolVersion;
@@ -15,10 +15,10 @@ public class MqttDownLinkHeaderParserImpl implements MqttDownLinkHeaderParser {
     public static final Integer PROTOCOL_VERSION_OFFSET = 4;
     public static final Integer PAYLOAD_LENGTH_OFFSET = 4;
 
-    private final MqttDownLinkFrameTypeImpl mqttDownLinkFrameTypeImpl;
+    private final MqttDownLinkFrameType mqttDownLinkFrameTypeImpl;
     private final Integer payloadLength;
 
-    public MqttDownLinkHeaderParserImpl(Integer payloadLength, MqttDownLinkFrameTypeImpl frameType) {
+    public MqttDownLinkHeaderParserImpl(Integer payloadLength, MqttDownLinkFrameType frameType) {
         this.mqttDownLinkFrameTypeImpl = frameType;
         this.payloadLength = payloadLength;
     }
@@ -48,7 +48,7 @@ public class MqttDownLinkHeaderParserImpl implements MqttDownLinkHeaderParser {
     }
 
     @Override
-    public MqttDownLinkFrameTypeImpl getMqttDownLinkFrameType() {
+    public MqttDownLinkFrameType getMqttDownLinkFrameType() {
         return this.mqttDownLinkFrameTypeImpl;
     }
 }

@@ -23,6 +23,7 @@ public class MqttUpLinkHeaderParserImpl implements MqttUpLinkHeaderParser {
     public static final Integer PAYLOAD_LENGTH_END_BIT = 48;
     public static final Integer SPOT_ID_START_BIT = 48;
     public static final Integer SPOT_ID_END_BIT = 96;
+    private static final Integer SPOT_ID_LENGTH = ((SPOT_ID_END_BIT - SPOT_ID_START_BIT) / 8) * 2;
 
     private ProtocolVersion protocolVersion;
     private FirmwareVersion firmwareVersion;
@@ -79,8 +80,15 @@ public class MqttUpLinkHeaderParserImpl implements MqttUpLinkHeaderParser {
 
     @Override
     public String parseSpotID(byte[] headerPayload) {
+
         Long spotIDNumber = BitWiseUtil.extractLongValue(headerPayload, SPOT_ID_START_BIT, SPOT_ID_END_BIT);
-        return Long.toHexString(spotIDNumber);
+        StringBuilder spotIDString = new StringBuilder(Long.toHexString(spotIDNumber));
+
+        for (int i = spotIDString.length(); i < MqttUpLinkHeaderParserImpl.SPOT_ID_LENGTH; i++) {
+            spotIDString.insert(0, "0");
+        }
+
+        return spotIDString.toString();
     }
 
     @Override

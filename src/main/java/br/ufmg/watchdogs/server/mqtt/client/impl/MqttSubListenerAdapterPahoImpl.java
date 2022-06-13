@@ -1,7 +1,9 @@
 package br.ufmg.watchdogs.server.mqtt.client.impl;
 
+import br.ufmg.watchdogs.server.mqtt.client.MqttClientAdapter;
 import br.ufmg.watchdogs.server.mqtt.client.MqttSubListenerAdapter;
-import br.ufmg.watchdogs.server.mqtt.uplink.payload.impl.MqttUpLinkFrameTypeImpl;
+import br.ufmg.watchdogs.server.mqtt.uplink.payload.MqttUpLinkFrameType;
+import br.ufmg.watchdogs.server.mqtt.uplink.payload.MqttUpLinkMessage;
 import br.ufmg.watchdogs.server.mqtt.uplink.payload.impl.MqttUpLinkMessageImpl;
 import br.ufmg.watchdogs.server.mqtt.uplink.service.MqttUpLinkService;
 import br.ufmg.watchdogs.server.mqtt.uplink.service.impl.*;
@@ -11,7 +13,6 @@ import org.eclipse.paho.client.mqttv3.MqttMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -19,7 +20,7 @@ import java.util.List;
 @Service
 public class MqttSubListenerAdapterPahoImpl implements MqttSubListenerAdapter {
 
-    private final MqttClientAdapterPahoImpl mqttClientConnector;
+    private final MqttClientAdapter mqttClientConnector;
     private final List<MqttUpLinkService> services = new ArrayList<>();
 
     @Autowired
@@ -53,7 +54,7 @@ public class MqttSubListenerAdapterPahoImpl implements MqttSubListenerAdapter {
     @Override
     public void messageArrived(String topic, MqttMessage mqttMessage) {
 
-        MqttUpLinkMessageImpl mqttUplinkMessageImpl = new MqttUpLinkMessageImpl(mqttMessage.getPayload());
+        MqttUpLinkMessage mqttUplinkMessageImpl = new MqttUpLinkMessageImpl(mqttMessage.getPayload());
         MqttUpLinkService service = this.getMqttUpLinkService(mqttUplinkMessageImpl);
 
         service.process(mqttUplinkMessageImpl, topic);
@@ -73,9 +74,9 @@ public class MqttSubListenerAdapterPahoImpl implements MqttSubListenerAdapter {
     }
 
     @Override
-    public MqttUpLinkService getMqttUpLinkService(MqttUpLinkMessageImpl mqttUplinkMessageImpl) {
+    public MqttUpLinkService getMqttUpLinkService(MqttUpLinkMessage mqttUplinkMessageImpl) {
 
-        MqttUpLinkFrameTypeImpl receivedMqttUpLinkFrameTypeImpl = mqttUplinkMessageImpl.getHeader().getMqttUpLinkFrameType();
+        MqttUpLinkFrameType receivedMqttUpLinkFrameTypeImpl = mqttUplinkMessageImpl.getHeader().getMqttUpLinkFrameType();
 
         return this.services.stream()
                 .filter(service -> service.upLinkFrameType() == receivedMqttUpLinkFrameTypeImpl)

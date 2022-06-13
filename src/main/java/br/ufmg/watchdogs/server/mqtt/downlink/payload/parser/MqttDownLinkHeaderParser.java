@@ -1,9 +1,9 @@
 package br.ufmg.watchdogs.server.mqtt.downlink.payload.parser;
 
-import br.ufmg.watchdogs.server.mqtt.downlink.payload.impl.MqttDownLinkFrameTypeImpl;
+import br.ufmg.watchdogs.server.mqtt.downlink.payload.MqttDownLinkFrameType;
 
 public interface MqttDownLinkHeaderParser {
 
     byte[] toByteArray();
-    MqttDownLinkFrameTypeImpl getMqttDownLinkFrameType();
+    MqttDownLinkFrameType getMqttDownLinkFrameType();
 }

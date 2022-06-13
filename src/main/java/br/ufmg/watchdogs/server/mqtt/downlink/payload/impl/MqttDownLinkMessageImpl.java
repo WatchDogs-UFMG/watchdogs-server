@@ -1,6 +1,8 @@
 package br.ufmg.watchdogs.server.mqtt.downlink.payload.impl;
 
+import br.ufmg.watchdogs.server.mqtt.downlink.payload.MqttDownLinkFrameType;
 import br.ufmg.watchdogs.server.mqtt.downlink.payload.MqttDownLinkMessage;
+import br.ufmg.watchdogs.server.mqtt.downlink.payload.parser.MqttDownLinkHeaderParser;
 import br.ufmg.watchdogs.server.mqtt.downlink.payload.parser.impl.MqttDownLinkHeaderParserImpl;
 import br.ufmg.watchdogs.server.mqtt.downlink.payload.parser.MqttDownLinkPayloadParser;
 
@@ -9,10 +11,10 @@ import java.io.IOException;
 
 public class MqttDownLinkMessageImpl implements MqttDownLinkMessage {
 
-    private final MqttDownLinkHeaderParserImpl header;
+    private final MqttDownLinkHeaderParser header;
     private final byte[] payload;
 
-    public MqttDownLinkMessageImpl(MqttDownLinkPayloadParser payload, MqttDownLinkFrameTypeImpl mqttDownLinkFrameTypeImpl) {
+    public MqttDownLinkMessageImpl(MqttDownLinkPayloadParser payload, MqttDownLinkFrameType mqttDownLinkFrameTypeImpl) {
         this.payload = payload.toByteArray();
         this.header = new MqttDownLinkHeaderParserImpl(this.payload.length, mqttDownLinkFrameTypeImpl);
     }
@@ -28,7 +30,7 @@ public class MqttDownLinkMessageImpl implements MqttDownLinkMessage {
     }
 
     @Override
-    public MqttDownLinkHeaderParserImpl getHeader() {
+    public MqttDownLinkHeaderParser getHeader() {
         return header;
     }
 

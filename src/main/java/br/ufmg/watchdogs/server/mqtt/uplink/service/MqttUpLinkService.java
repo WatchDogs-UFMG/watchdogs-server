@@ -1,17 +1,17 @@
 package br.ufmg.watchdogs.server.mqtt.uplink.service;
 
-import br.ufmg.watchdogs.server.mqtt.uplink.payload.impl.MqttUpLinkFrameTypeImpl;
-import br.ufmg.watchdogs.server.mqtt.uplink.payload.impl.MqttUpLinkMessageImpl;
+import br.ufmg.watchdogs.server.mqtt.uplink.payload.MqttUpLinkFrameType;
+import br.ufmg.watchdogs.server.mqtt.uplink.payload.MqttUpLinkMessage;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 
 public interface MqttUpLinkService {
 
-    void process(MqttUpLinkMessageImpl message, String topic);
-    MqttUpLinkFrameTypeImpl upLinkFrameType();
+    void process(MqttUpLinkMessage upLinkMessage, String upLinkTopic);
+    MqttUpLinkFrameType upLinkFrameType();
 
-    default void log(MqttUpLinkMessageImpl message, String topic) {
+    default void log(MqttUpLinkMessage message, String topic) {
         System.out.println("Received message on topic: " + topic);
         System.out.println("Frame type: " + message.getHeader().getMqttUpLinkFrameType().name());
         System.out.println("Payload: " + Arrays.toString(message.getPayload()));
