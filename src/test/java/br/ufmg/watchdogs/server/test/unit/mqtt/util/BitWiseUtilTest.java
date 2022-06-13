@@ -1,9 +1,11 @@
-package br.ufmg.watchdogs.server.unit.mqtt.util;
+package br.ufmg.watchdogs.server.test.unit.mqtt.util;
 
 import br.ufmg.watchdogs.server.mqtt.util.BitWiseUtil;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
 
+@SpringBootTest
 public class BitWiseUtilTest {
 
     private static final Long byte1 = 0b0110_1001_1010_0101_1100_0011_0001_1000L;

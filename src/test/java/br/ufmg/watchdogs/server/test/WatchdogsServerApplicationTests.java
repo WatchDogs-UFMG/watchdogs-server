@@ -1,4 +1,4 @@
-package br.ufmg.watchdogs.server;
+package br.ufmg.watchdogs.server.test;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

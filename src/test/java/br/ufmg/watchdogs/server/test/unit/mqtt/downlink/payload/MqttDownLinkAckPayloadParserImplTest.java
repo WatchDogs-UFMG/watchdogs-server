@@ -1,9 +1,11 @@
-package br.ufmg.watchdogs.server.unit.mqtt.downlink.payload;
+package br.ufmg.watchdogs.server.test.unit.mqtt.downlink.payload;
 
 import br.ufmg.watchdogs.server.mqtt.downlink.payload.parser.impl.MqttDownLinkAckPayloadParserImpl;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
 
+@SpringBootTest
 public class MqttDownLinkAckPayloadParserImplTest {
 
     @Test
