@@ -4,6 +4,38 @@ import java.util.Arrays;
 
 public class BitWiseUtil {
 
+    public static Long extractLongValue(byte[] bytePayload, Integer startBit, Integer endBit) {
+        String substring = BitWiseUtil.getBinaryString(bytePayload).substring(startBit, endBit);
+        return Long.parseLong(substring, 2);
+    }
+
+    public static Integer extractIntegerValue(byte[] bytePayload, Integer startBit, Integer endBit) {
+        String substring = BitWiseUtil.getBinaryString(bytePayload).substring(startBit, endBit);
+        return Integer.parseInt(substring, 2);
+    }
+
+    public static String getBinaryString(byte[] bytePayload) {
+
+        StringBuilder binaryString = new StringBuilder();
+
+        for (byte byteElement: bytePayload) {
+
+            StringBuilder binaryStringAux = new StringBuilder(Long.toBinaryString(byteElement & 0xffffffffL));
+
+            for (int i = binaryStringAux.length(); i < 8; i++) {
+                binaryStringAux.insert(0, "0");
+            }
+
+            String formattedBinaryString = (binaryStringAux.length() > 8)
+                    ? binaryStringAux.substring(binaryStringAux.length() - 8, binaryStringAux.length())
+                    : binaryStringAux.toString();
+
+            binaryString.append(formattedBinaryString);
+        }
+
+        return binaryString.toString();
+    }
+
     public static Long getByteSlice(Long originalByte, Long bitsMaskCount, Long unsignedRightShift) {
         return BitWiseUtil.applyBitMask(BitWiseUtil.shiftByte(originalByte, unsignedRightShift), bitsMaskCount);
     }

@@ -4,23 +4,23 @@ import java.util.Arrays;
 
 public class MqttUplinkMessage {
 
-    private final MqttUpLinkHeader header;
+    private final MqttUpLinkHeaderParser header;
     private final byte[] payload;
 
     public MqttUplinkMessage(byte[] message) {
-        this.header = new MqttUpLinkHeader(Arrays.copyOfRange(
+        this.header = new MqttUpLinkHeaderParser(Arrays.copyOfRange(
                 message,
                 0,
-                MqttUpLinkHeader.HEADER_LENGTH
+                MqttUpLinkHeaderParser.HEADER_LENGTH
         ));
         this.payload = Arrays.copyOfRange(
                 message,
-                MqttUpLinkHeader.HEADER_LENGTH,
+                MqttUpLinkHeaderParser.HEADER_LENGTH,
                 message.length
         );
     }
 
-    public MqttUpLinkHeader getHeader() {
+    public MqttUpLinkHeaderParser getHeader() {
         return header;
     }
 

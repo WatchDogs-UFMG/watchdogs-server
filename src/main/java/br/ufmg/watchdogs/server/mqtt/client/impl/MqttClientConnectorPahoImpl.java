@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
 
+import static java.nio.charset.StandardCharsets.*;
+
 @Service
 public class MqttClientConnectorPahoImpl implements MqttClientAdapter {
 
@@ -41,7 +43,8 @@ public class MqttClientConnectorPahoImpl implements MqttClientAdapter {
                     MqttClientConnectorPahoImpl.MQTT_MEMORY_PERSISTENCE
             );
 
-            this.mqttClient.connect(mqttConnectionOptions);
+            IMqttToken mqttToken = this.mqttClient.connect(mqttConnectionOptions);
+            mqttToken.waitForCompletion();
 
         } catch(MqttException e) {
 
@@ -73,7 +76,8 @@ public class MqttClientConnectorPahoImpl implements MqttClientAdapter {
 
         try {
 
-            System.out.println("Publishing message: " + Arrays.toString(payload));
+            System.out.println("Publishing payload: " + Arrays.toString(payload));
+            System.out.println("Publishing message: " + new String(payload, UTF_8));
 
             MqttMessage mqttMessage = new MqttMessage(payload);
             mqttMessage.setQos(topicQoS);
@@ -102,7 +106,7 @@ public class MqttClientConnectorPahoImpl implements MqttClientAdapter {
 
             for (int i = 0; i >= 0; i++) {
 
-                Thread.sleep(1000);
+                Thread.sleep(10 * 1000);
                 this.publish(("Message sending number: " + i).getBytes(), "/watchdogs/downlink/ack", 1);
             }
 
