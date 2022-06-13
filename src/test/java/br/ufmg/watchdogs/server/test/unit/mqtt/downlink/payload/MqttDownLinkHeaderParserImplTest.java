@@ -4,9 +4,7 @@ import br.ufmg.watchdogs.server.mqtt.downlink.payload.impl.MqttDownLinkFrameType
 import br.ufmg.watchdogs.server.mqtt.downlink.payload.parser.impl.MqttDownLinkHeaderParserImpl;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
 public class MqttDownLinkHeaderParserImplTest {
 
     @Test

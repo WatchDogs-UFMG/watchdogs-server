@@ -3,11 +3,9 @@ package br.ufmg.watchdogs.server.test.unit.mqtt.downlink.payload;
 import br.ufmg.watchdogs.server.mqtt.downlink.payload.parser.impl.MqttDownLinkAnimalSyncPayloadParserImpl;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
 
-@SpringBootTest
 public class MqttDownLinkAnimalSyncPayloadParserImplTest {
 
     @Test

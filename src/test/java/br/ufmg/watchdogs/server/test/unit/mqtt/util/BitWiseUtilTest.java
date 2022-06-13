@@ -3,9 +3,7 @@ package br.ufmg.watchdogs.server.test.unit.mqtt.util;
 import br.ufmg.watchdogs.server.mqtt.util.BitWiseUtil;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
 public class BitWiseUtilTest {
 
     private static final Long byte1 = 0b0110_1001_1010_0101_1100_0011_0001_1000L;
@@ -103,5 +101,17 @@ public class BitWiseUtilTest {
         Assertions.assertEquals(0b0110_1001L, byteShift4);
         Assertions.assertEquals(0b0L, byteShift5);
 
+    }
+
+    @Test
+    void shouldShiftTheByteLeft() {
+
+        Long byteShift1 = BitWiseUtil.shiftByteLeft(byte1, 0);
+        Long byteShift2 = BitWiseUtil.shiftByteLeft(byte1, 4);
+        Long byteShift3 = BitWiseUtil.shiftByteLeft(byte1, 8);
+
+        Assertions.assertEquals(0b0110_1001_1010_0101_1100_0011_0001_1000L, byteShift1);
+        Assertions.assertEquals(0b0110_1001_1010_0101_1100_0011_0001_1000_0000L, byteShift2);
+        Assertions.assertEquals(0b0110_1001_1010_0101_1100_0011_0001_1000_0000_0000L, byteShift3);
     }
 }

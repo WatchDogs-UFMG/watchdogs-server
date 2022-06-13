@@ -1,7 +1,7 @@
 package br.ufmg.watchdogs.server.mqtt.downlink.service.impl;
 
 import br.ufmg.watchdogs.server.mqtt.client.impl.MqttClientAdapterPahoImpl;
-import br.ufmg.watchdogs.server.mqtt.downlink.payload.impl.MqttDownLinkMessageImpl;
+import br.ufmg.watchdogs.server.mqtt.downlink.payload.MqttDownLinkMessage;
 import br.ufmg.watchdogs.server.mqtt.downlink.service.MqttDownLinkService;
 import br.ufmg.watchdogs.server.mqtt.downlink.topic.impl.MqttDownLinkTopicImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +20,7 @@ public class MqttDownLinkServiceImpl implements MqttDownLinkService {
     }
 
     @Override
-    public void publish(MqttDownLinkMessageImpl message, MqttDownLinkTopicImpl mqttDownLinkTopic, String spotID) {
+    public void publish(MqttDownLinkMessage message, MqttDownLinkTopicImpl mqttDownLinkTopic, String spotID) {
 
         String topicName = mqttDownLinkTopic.getTopicName(spotID);
         Integer topicQoS = mqttDownLinkTopic.getTopicQoS();

@@ -76,8 +76,7 @@ public class MqttClientAdapterPahoImpl implements MqttClientAdapter {
 
         try {
 
-            System.out.println("Publishing payload: " + Arrays.toString(payload));
-            System.out.println("Publishing message: " + new String(payload, UTF_8));
+            System.out.print("Publishing... ");
 
             MqttMessage mqttMessage = new MqttMessage(payload);
             mqttMessage.setQos(topicQoS);
@@ -85,7 +84,8 @@ public class MqttClientAdapterPahoImpl implements MqttClientAdapter {
             IMqttDeliveryToken token = this.mqttClient.publish(topicName, mqttMessage);
             token.waitForCompletion();
 
-            System.out.println("Message published");
+            System.out.println("Done!");
+            System.out.println();
 
             return true;
 

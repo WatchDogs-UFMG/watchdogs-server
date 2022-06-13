@@ -51,11 +51,7 @@ public class MqttSubListenerAdapterPahoImpl implements MqttSubListenerAdapter {
     }
 
     @Override
-    public void messageArrived(String topic, MqttMessage mqttMessage) throws Exception {
-
-        System.out.println("Received message on topic: " + topic);
-        System.out.println("Payload: " + Arrays.toString(mqttMessage.getPayload()));
-        System.out.println("Message: " + new String(mqttMessage.getPayload(), StandardCharsets.UTF_8));
+    public void messageArrived(String topic, MqttMessage mqttMessage) {
 
         MqttUpLinkMessageImpl mqttUplinkMessageImpl = new MqttUpLinkMessageImpl(mqttMessage.getPayload());
         MqttUpLinkService service = this.getMqttUpLinkService(mqttUplinkMessageImpl);

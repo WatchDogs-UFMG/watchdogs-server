@@ -20,11 +20,13 @@ public class MqttDownLinkAckPayloadParserImpl implements MqttDownLinkPayloadPars
                 4
         ).byteValue();
 
-        byte payloadCountIDByte2 = BitWiseUtil.getByteSlice(
+        Long payloadCountIDLong = BitWiseUtil.getByteSlice(
                 (long) this.payloadCountID,
                 4,
                 0
-        ).byteValue();
+        );
+
+        byte payloadCountIDByte2 = BitWiseUtil.shiftByteLeft(payloadCountIDLong, 4).byteValue();
 
         return new byte[]{ payloadCountIDByte1, payloadCountIDByte2 };
     }

@@ -58,4 +58,8 @@ public class BitWiseUtil {
                 .findFirst()
                 .orElseThrow(() -> new RuntimeException("BitWiseMask not found for a " + bitsMaskCount + " bits mask!"));
     }
+
+    public static Long shiftByteLeft(Long originalByte, Integer leftShift) {
+        return originalByte << leftShift;
+    }
 }
