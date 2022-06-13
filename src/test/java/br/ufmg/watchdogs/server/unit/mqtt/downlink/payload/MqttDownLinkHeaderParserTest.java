@@ -1,4 +1,4 @@
-package br.ufmg.watchdogs.server.unit.mqtt;
+package br.ufmg.watchdogs.server.unit.mqtt.downlink.payload;
 
 import br.ufmg.watchdogs.server.mqtt.downlink.payload.MqttDownLinkFrameType;
 import br.ufmg.watchdogs.server.mqtt.downlink.payload.MqttDownLinkHeaderParser;

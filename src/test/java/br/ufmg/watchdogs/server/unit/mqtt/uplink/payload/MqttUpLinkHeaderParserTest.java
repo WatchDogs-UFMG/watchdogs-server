@@ -1,4 +1,4 @@
-package br.ufmg.watchdogs.server.unit.mqtt;
+package br.ufmg.watchdogs.server.unit.mqtt.uplink.payload;
 
 import br.ufmg.watchdogs.server.mqtt.protocol.FirmwareVersion;
 import br.ufmg.watchdogs.server.mqtt.protocol.ProtocolVersion;
