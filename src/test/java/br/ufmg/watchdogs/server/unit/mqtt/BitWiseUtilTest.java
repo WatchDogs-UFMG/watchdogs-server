@@ -47,11 +47,11 @@ public class BitWiseUtilTest {
 
     @Test
     void shouldGetByteSlice() {
-        Long byteSlice1 = BitWiseUtil.getByteSlice(byte1, 4L, 0L);
-        Long byteSlice2 = BitWiseUtil.getByteSlice(byte1, 4L, 4L);
-        Long byteSlice3 = BitWiseUtil.getByteSlice(byte1, 8L, 8L);
-        Long byteSlice4 = BitWiseUtil.getByteSlice(byte1, 8L, 16L);
-        Long byteSlice5 = BitWiseUtil.getByteSlice(byte1, 8L, 24L);
+        Long byteSlice1 = BitWiseUtil.getByteSlice(byte1, 4, 0);
+        Long byteSlice2 = BitWiseUtil.getByteSlice(byte1, 4, 4);
+        Long byteSlice3 = BitWiseUtil.getByteSlice(byte1, 8, 8);
+        Long byteSlice4 = BitWiseUtil.getByteSlice(byte1, 8, 16);
+        Long byteSlice5 = BitWiseUtil.getByteSlice(byte1, 8, 24);
 
         Assertions.assertEquals(0b1000, byteSlice1);
         Assertions.assertEquals(0b0001, byteSlice2);
@@ -63,17 +63,17 @@ public class BitWiseUtilTest {
     @Test
     void shouldConcatTwoBytes() {
 
-        Long concatBytes1 = BitWiseUtil.concatBytes(byte2, byte1, 32L);
+        Long concatBytes1 = BitWiseUtil.concatBytes(byte2, byte1, 32);
 
         Long concatBytes2 = 0L;
-        concatBytes2 = BitWiseUtil.concatBytes(concatBytes2, 0b1000L, 0L);
-        concatBytes2 = BitWiseUtil.concatBytes(concatBytes2, 0b0001L, 4L);
-        concatBytes2 = BitWiseUtil.concatBytes(concatBytes2, 0b0011L, 8L);
-        concatBytes2 = BitWiseUtil.concatBytes(concatBytes2, 0b1100L, 12L);
-        concatBytes2 = BitWiseUtil.concatBytes(concatBytes2, 0b0101L, 16L);
-        concatBytes2 = BitWiseUtil.concatBytes(concatBytes2, 0b1010L, 20L);
-        concatBytes2 = BitWiseUtil.concatBytes(concatBytes2, 0b1001L, 24L);
-        concatBytes2 = BitWiseUtil.concatBytes(concatBytes2, 0b0110L, 28L);
+        concatBytes2 = BitWiseUtil.concatBytes(concatBytes2, 0b1000L, 0);
+        concatBytes2 = BitWiseUtil.concatBytes(concatBytes2, 0b0001L, 4);
+        concatBytes2 = BitWiseUtil.concatBytes(concatBytes2, 0b0011L, 8);
+        concatBytes2 = BitWiseUtil.concatBytes(concatBytes2, 0b1100L, 12);
+        concatBytes2 = BitWiseUtil.concatBytes(concatBytes2, 0b0101L, 16);
+        concatBytes2 = BitWiseUtil.concatBytes(concatBytes2, 0b1010L, 20);
+        concatBytes2 = BitWiseUtil.concatBytes(concatBytes2, 0b1001L, 24);
+        concatBytes2 = BitWiseUtil.concatBytes(concatBytes2, 0b0110L, 28);
 
         Assertions.assertEquals(longByte, concatBytes1);
         Assertions.assertEquals(byte1.longValue(), concatBytes2);
@@ -81,18 +81,18 @@ public class BitWiseUtilTest {
 
     @Test
     void shouldApplyBitMaskToAByte() {
-        Long byteMasked1 = BitWiseUtil.applyBitMask(byte1, 8L);
+        Long byteMasked1 = BitWiseUtil.applyBitMask(byte1, 8);
         Assertions.assertEquals(0b0001_1000, byteMasked1);
     }
 
     @Test
     void shouldShiftTheByte() {
 
-        Long byteShift1 = BitWiseUtil.shiftByte(byte1, 0L);
-        Long byteShift2 = BitWiseUtil.shiftByte(byte1, 8L);
-        Long byteShift3 = BitWiseUtil.shiftByte(byte1, 16L);
-        Long byteShift4 = BitWiseUtil.shiftByte(byte1, 24L);
-        Long byteShift5 = BitWiseUtil.shiftByte(byte1, 32L);
+        Long byteShift1 = BitWiseUtil.shiftByte(byte1, 0);
+        Long byteShift2 = BitWiseUtil.shiftByte(byte1, 8);
+        Long byteShift3 = BitWiseUtil.shiftByte(byte1, 16);
+        Long byteShift4 = BitWiseUtil.shiftByte(byte1, 24);
+        Long byteShift5 = BitWiseUtil.shiftByte(byte1, 32);
 
 
         Assertions.assertEquals(0b0110_1001_1010_0101_1100_0011_0001_1000L, byteShift1);

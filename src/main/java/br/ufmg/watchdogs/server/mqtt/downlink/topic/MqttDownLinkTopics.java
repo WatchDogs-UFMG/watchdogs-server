@@ -16,7 +16,7 @@ public enum MqttDownLinkTopics implements MqttDownLinkTopic {
 
     @Override
     public String getTopicName(String spotID) {
-        return this.topicName + spotID;
+        return this.topicName.replace("{spodID}", spotID);
     }
 
     @Override

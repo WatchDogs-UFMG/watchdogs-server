@@ -36,23 +36,23 @@ public class BitWiseUtil {
         return binaryString.toString();
     }
 
-    public static Long getByteSlice(Long originalByte, Long bitsMaskCount, Long unsignedRightShift) {
+    public static Long getByteSlice(Long originalByte, Integer bitsMaskCount, Integer unsignedRightShift) {
         return BitWiseUtil.applyBitMask(BitWiseUtil.shiftByte(originalByte, unsignedRightShift), bitsMaskCount);
     }
 
-    public static Long concatBytes(Long rightByte, Long leftByte, Long leftByteOffset) {
+    public static Long concatBytes(Long rightByte, Long leftByte, Integer leftByteOffset) {
         return (rightByte + (leftByte << leftByteOffset));
     }
 
-    public static Long applyBitMask(Long originalByte, Long bitWiseMaskCount) {
+    public static Long applyBitMask(Long originalByte, Integer bitWiseMaskCount) {
         return originalByte & BitWiseUtil.getBitWiseMask(bitWiseMaskCount).getMask();
     }
 
-    public static Long shiftByte(Long originalByte, Long unsignedRightShift) {
+    public static Long shiftByte(Long originalByte, Integer unsignedRightShift) {
         return (originalByte >>> unsignedRightShift);
     }
 
-    private static BitWiseMask getBitWiseMask(Long bitsMaskCount) {
+    private static BitWiseMask getBitWiseMask(Integer bitsMaskCount) {
         return Arrays.stream(BitWiseMask.values())
                 .filter(bitMask -> bitMask.getBitsMaskCount().equals(bitsMaskCount))
                 .findFirst()

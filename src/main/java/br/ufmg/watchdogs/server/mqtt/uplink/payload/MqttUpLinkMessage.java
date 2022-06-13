@@ -2,12 +2,12 @@ package br.ufmg.watchdogs.server.mqtt.uplink.payload;
 
 import java.util.Arrays;
 
-public class MqttUplinkMessage {
+public class MqttUpLinkMessage {
 
     private final MqttUpLinkHeaderParser header;
     private final byte[] payload;
 
-    public MqttUplinkMessage(byte[] message) {
+    public MqttUpLinkMessage(byte[] message) {
         this.header = new MqttUpLinkHeaderParser(Arrays.copyOfRange(
                 message,
                 0,

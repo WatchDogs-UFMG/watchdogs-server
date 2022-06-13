@@ -1,6 +1,7 @@
 package br.ufmg.watchdogs.server.mqtt.uplink.payload;
 
 public enum MqttUpLinkFrameType {
+
     UPLINK_FRAME_TYPE_ACK(0b0000),
     UPLINK_FRAME_TYPE_SPOT_SYNC(0b0001),
     UPLINK_FRAME_TYPE_ANIMAL_SYNC(0b0010),

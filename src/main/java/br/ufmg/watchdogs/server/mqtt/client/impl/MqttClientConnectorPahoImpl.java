@@ -25,8 +25,6 @@ public class MqttClientConnectorPahoImpl implements MqttClientAdapter {
     @Autowired
     public MqttClientConnectorPahoImpl(Environment env) {
         this.env = env;
-        this.connect();
-        System.out.println("MQTT client connected!");
     }
 
     @Autowired
@@ -45,6 +43,8 @@ public class MqttClientConnectorPahoImpl implements MqttClientAdapter {
 
             IMqttToken mqttToken = this.mqttClient.connect(mqttConnectionOptions);
             mqttToken.waitForCompletion();
+
+            System.out.println("MQTT client connected!");
 
         } catch(MqttException e) {
 

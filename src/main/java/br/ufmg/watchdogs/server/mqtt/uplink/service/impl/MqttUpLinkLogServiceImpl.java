@@ -1,15 +1,15 @@
 package br.ufmg.watchdogs.server.mqtt.uplink.service.impl;
 
 import br.ufmg.watchdogs.server.mqtt.uplink.payload.MqttUpLinkFrameType;
-import br.ufmg.watchdogs.server.mqtt.uplink.payload.MqttUplinkMessage;
-import br.ufmg.watchdogs.server.mqtt.uplink.service.MqttUplinkService;
+import br.ufmg.watchdogs.server.mqtt.uplink.payload.MqttUpLinkMessage;
+import br.ufmg.watchdogs.server.mqtt.uplink.service.MqttUpLinkService;
 import org.springframework.stereotype.Service;
 
 @Service
-public class MqttUplinkLogServiceImpl implements MqttUplinkService {
+public class MqttUpLinkLogServiceImpl implements MqttUpLinkService {
 
     @Override
-    public void process(MqttUplinkMessage message, String topic) {
+    public void process(MqttUpLinkMessage message, String topic) {
         this.log(message, topic);
     }
 

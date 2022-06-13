@@ -26,10 +26,12 @@ public class WatchdogsServerApplication {
 	public static void main(String[] args) {
 
 		SpringApplication.run(WatchdogsServerApplication.class, args);
+
+		mqttClientConnector.connect();
 		mqttSubHandle.listen();
 
 		System.out.println("\nApplication launched successfully!!!\n");
 
-		WatchdogsServerApplication.mqttClientConnector.keepSendingTestMessages();
+		// WatchdogsServerApplication.mqttClientConnector.keepSendingTestMessages();
 	}
 }

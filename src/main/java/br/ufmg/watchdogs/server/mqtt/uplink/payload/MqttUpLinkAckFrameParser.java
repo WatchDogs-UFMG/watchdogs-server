@@ -1,6 +1,6 @@
 package br.ufmg.watchdogs.server.mqtt.uplink.payload;
 
-public class MqttUplinkAckFrameParser {
+public class MqttUpLinkAckFrameParser {
 
 
 }
