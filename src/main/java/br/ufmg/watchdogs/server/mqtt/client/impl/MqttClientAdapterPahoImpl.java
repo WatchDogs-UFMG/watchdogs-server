@@ -12,7 +12,7 @@ import java.util.Arrays;
 import static java.nio.charset.StandardCharsets.*;
 
 @Service
-public class MqttClientConnectorPahoImpl implements MqttClientAdapter {
+public class MqttClientAdapterPahoImpl implements MqttClientAdapter {
 
     private static final String MQTT_DEV_BROKER = "tcp://localhost:7893";
     private static final String MQTT_PROD_BROKER = "tcp://watchdogs_mqtt_broker:7892";
@@ -23,7 +23,7 @@ public class MqttClientConnectorPahoImpl implements MqttClientAdapter {
     private MqttAsyncClient mqttClient;
 
     @Autowired
-    public MqttClientConnectorPahoImpl(Environment env) {
+    public MqttClientAdapterPahoImpl(Environment env) {
         this.env = env;
     }
 
@@ -37,8 +37,8 @@ public class MqttClientConnectorPahoImpl implements MqttClientAdapter {
 
             this.mqttClient = new MqttAsyncClient(
                     this.getBrokerName(),
-                    MqttClientConnectorPahoImpl.MQTT_SERVER_CLIENT_ID,
-                    MqttClientConnectorPahoImpl.MQTT_MEMORY_PERSISTENCE
+                    MqttClientAdapterPahoImpl.MQTT_SERVER_CLIENT_ID,
+                    MqttClientAdapterPahoImpl.MQTT_MEMORY_PERSISTENCE
             );
 
             IMqttToken mqttToken = this.mqttClient.connect(mqttConnectionOptions);
@@ -118,11 +118,11 @@ public class MqttClientConnectorPahoImpl implements MqttClientAdapter {
     private String getBrokerName() {
 
         if (Arrays.asList(env.getActiveProfiles()).contains("dev")) {
-            return MqttClientConnectorPahoImpl.MQTT_DEV_BROKER;
+            return MqttClientAdapterPahoImpl.MQTT_DEV_BROKER;
         } else if (Arrays.asList(env.getActiveProfiles()).contains("prod")){
-            return MqttClientConnectorPahoImpl.MQTT_PROD_BROKER;
+            return MqttClientAdapterPahoImpl.MQTT_PROD_BROKER;
         } else {
-            return MqttClientConnectorPahoImpl.MQTT_PROD_BROKER;
+            return MqttClientAdapterPahoImpl.MQTT_PROD_BROKER;
         }
     }
 }

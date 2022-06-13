@@ -1,6 +1,8 @@
-package br.ufmg.watchdogs.server.mqtt.uplink.topic;
+package br.ufmg.watchdogs.server.mqtt.uplink.topic.impl;
 
-public enum MqttUpLinkTopics implements MqttUpLinkTopic {
+import br.ufmg.watchdogs.server.mqtt.uplink.topic.MqttUpLinkTopic;
+
+public enum MqttUpLinkTopicImpl implements MqttUpLinkTopic {
 
     UPLINK_TOPIC_ACK("/watchdogs/uplink/ack", 1),
     UPLINK_TOPIC_SPOT_SYNC("/watchdogs/uplink/spot-sync", 1),
@@ -11,7 +13,7 @@ public enum MqttUpLinkTopics implements MqttUpLinkTopic {
     private final String topicName;
     private final Integer topicQoS;
 
-    MqttUpLinkTopics(String topicName, Integer topicQoS) {
+    MqttUpLinkTopicImpl(String topicName, Integer topicQoS) {
         this.topicName = topicName;
         this.topicQoS = topicQoS;
     }

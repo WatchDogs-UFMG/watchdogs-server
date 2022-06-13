@@ -1,7 +1,7 @@
 package br.ufmg.watchdogs.server;
 
-import br.ufmg.watchdogs.server.mqtt.client.impl.MqttClientConnectorPahoImpl;
-import br.ufmg.watchdogs.server.mqtt.uplink.MqttSubHandle;
+import br.ufmg.watchdogs.server.mqtt.client.impl.MqttClientAdapterPahoImpl;
+import br.ufmg.watchdogs.server.mqtt.client.impl.MqttSubListenerAdapterPahoImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -11,16 +11,16 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 public class WatchdogsServerApplication {
 
-	private static MqttClientConnectorPahoImpl mqttClientConnector;
-	private static MqttSubHandle mqttSubHandle;
+	private static MqttClientAdapterPahoImpl mqttClientConnector;
+	private static MqttSubListenerAdapterPahoImpl mqttSubListenerAdapterPahoImpl;
 
 	@Autowired
 	public WatchdogsServerApplication(
-			MqttClientConnectorPahoImpl mqttClientConnector,
-			MqttSubHandle mqttSubHandle
+			MqttClientAdapterPahoImpl mqttClientConnector,
+			MqttSubListenerAdapterPahoImpl mqttSubListenerAdapterPahoImpl
 	) {
 		WatchdogsServerApplication.mqttClientConnector = mqttClientConnector;
-		WatchdogsServerApplication.mqttSubHandle = mqttSubHandle;
+		WatchdogsServerApplication.mqttSubListenerAdapterPahoImpl = mqttSubListenerAdapterPahoImpl;
 	}
 
 	public static void main(String[] args) {
@@ -28,7 +28,7 @@ public class WatchdogsServerApplication {
 		SpringApplication.run(WatchdogsServerApplication.class, args);
 
 		mqttClientConnector.connect();
-		mqttSubHandle.listen();
+		mqttSubListenerAdapterPahoImpl.listen();
 
 		System.out.println("\nApplication launched successfully!!!\n");
 

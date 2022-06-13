@@ -1,6 +1,6 @@
 package br.ufmg.watchdogs.server.unit.mqtt.downlink.payload;
 
-import br.ufmg.watchdogs.server.mqtt.downlink.payload.impl.MqttDownLinkAckPayloadParserImpl;
+import br.ufmg.watchdogs.server.mqtt.downlink.payload.parser.impl.MqttDownLinkAckPayloadParserImpl;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

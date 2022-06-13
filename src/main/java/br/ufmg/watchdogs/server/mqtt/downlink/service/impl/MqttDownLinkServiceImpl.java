@@ -1,10 +1,9 @@
 package br.ufmg.watchdogs.server.mqtt.downlink.service.impl;
 
-import br.ufmg.watchdogs.server.mqtt.client.impl.MqttClientConnectorPahoImpl;
-import br.ufmg.watchdogs.server.mqtt.downlink.payload.MqttDownLinkMessage;
+import br.ufmg.watchdogs.server.mqtt.client.impl.MqttClientAdapterPahoImpl;
+import br.ufmg.watchdogs.server.mqtt.downlink.payload.impl.MqttDownLinkMessageImpl;
 import br.ufmg.watchdogs.server.mqtt.downlink.service.MqttDownLinkService;
-import br.ufmg.watchdogs.server.mqtt.downlink.topic.MqttDownLinkTopic;
-import br.ufmg.watchdogs.server.mqtt.downlink.topic.MqttDownLinkTopics;
+import br.ufmg.watchdogs.server.mqtt.downlink.topic.impl.MqttDownLinkTopicImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,15 +12,15 @@ import java.io.IOException;
 @Service
 public class MqttDownLinkServiceImpl implements MqttDownLinkService {
 
-    private final MqttClientConnectorPahoImpl mqttClientConnectorPaho;
+    private final MqttClientAdapterPahoImpl mqttClientConnectorPaho;
 
     @Autowired
-    public MqttDownLinkServiceImpl(MqttClientConnectorPahoImpl mqttClientConnectorPaho) {
+    public MqttDownLinkServiceImpl(MqttClientAdapterPahoImpl mqttClientConnectorPaho) {
         this.mqttClientConnectorPaho = mqttClientConnectorPaho;
     }
 
     @Override
-    public void publish(MqttDownLinkMessage message, MqttDownLinkTopics mqttDownLinkTopic, String spotID) {
+    public void publish(MqttDownLinkMessageImpl message, MqttDownLinkTopicImpl mqttDownLinkTopic, String spotID) {
 
         String topicName = mqttDownLinkTopic.getTopicName(spotID);
         Integer topicQoS = mqttDownLinkTopic.getTopicQoS();

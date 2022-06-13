@@ -1,6 +1,8 @@
-package br.ufmg.watchdogs.server.mqtt.downlink.topic;
+package br.ufmg.watchdogs.server.mqtt.downlink.topic.impl;
 
-public enum MqttDownLinkTopics implements MqttDownLinkTopic {
+import br.ufmg.watchdogs.server.mqtt.downlink.topic.MqttDownLinkTopic;
+
+public enum MqttDownLinkTopicImpl implements MqttDownLinkTopic {
 
     DOWNLINK_TOPIC_ACK("/watchdogs/downlink/ack/{spotID}", 1),
     DOWNLINK_TOPIC_SPOT_SYNC("/watchdogs/downlink/spot-sync/{spotID}", 1),
@@ -9,7 +11,7 @@ public enum MqttDownLinkTopics implements MqttDownLinkTopic {
     private final String topicName;
     private final Integer topicQoS;
 
-    MqttDownLinkTopics(String topicName, Integer topicQoS) {
+    MqttDownLinkTopicImpl(String topicName, Integer topicQoS) {
         this.topicName = topicName;
         this.topicQoS = topicQoS;
     }

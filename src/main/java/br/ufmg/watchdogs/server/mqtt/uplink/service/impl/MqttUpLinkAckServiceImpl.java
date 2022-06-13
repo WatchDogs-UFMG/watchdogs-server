@@ -1,7 +1,7 @@
 package br.ufmg.watchdogs.server.mqtt.uplink.service.impl;
 
-import br.ufmg.watchdogs.server.mqtt.uplink.payload.MqttUpLinkFrameType;
-import br.ufmg.watchdogs.server.mqtt.uplink.payload.MqttUpLinkMessage;
+import br.ufmg.watchdogs.server.mqtt.uplink.payload.impl.MqttUpLinkFrameTypeImpl;
+import br.ufmg.watchdogs.server.mqtt.uplink.payload.impl.MqttUpLinkMessageImpl;
 import br.ufmg.watchdogs.server.mqtt.uplink.service.MqttUpLinkService;
 import org.springframework.stereotype.Service;
 
@@ -9,12 +9,12 @@ import org.springframework.stereotype.Service;
 public class MqttUpLinkAckServiceImpl implements MqttUpLinkService {
 
     @Override
-    public void process(MqttUpLinkMessage message, String topic) {
+    public void process(MqttUpLinkMessageImpl message, String topic) {
         this.log(message, topic);
     }
 
     @Override
-    public MqttUpLinkFrameType upLinkFrameType() {
-        return MqttUpLinkFrameType.UPLINK_FRAME_TYPE_ACK;
+    public MqttUpLinkFrameTypeImpl upLinkFrameType() {
+        return MqttUpLinkFrameTypeImpl.UPLINK_FRAME_TYPE_ACK;
     }
 }

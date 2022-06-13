@@ -1,18 +1,18 @@
 package br.ufmg.watchdogs.server.unit.mqtt.downlink.payload;
 
-import br.ufmg.watchdogs.server.mqtt.downlink.payload.MqttDownLinkFrameType;
-import br.ufmg.watchdogs.server.mqtt.downlink.payload.MqttDownLinkHeaderParser;
+import br.ufmg.watchdogs.server.mqtt.downlink.payload.impl.MqttDownLinkFrameTypeImpl;
+import br.ufmg.watchdogs.server.mqtt.downlink.payload.parser.impl.MqttDownLinkHeaderParserImpl;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class MqttDownLinkHeaderParserTest {
+public class MqttDownLinkHeaderParserImplTest {
 
     @Test
     void shouldParseACKFrameHeader() {
 
         byte[] payload = new byte[0];
 
-        MqttDownLinkHeaderParser header = new MqttDownLinkHeaderParser(payload.length, MqttDownLinkFrameType.DOWNLINK_FRAME_TYPE_ACK);
+        MqttDownLinkHeaderParserImpl header = new MqttDownLinkHeaderParserImpl(payload.length, MqttDownLinkFrameTypeImpl.DOWNLINK_FRAME_TYPE_ACK);
         byte[] byteArray = header.toByteArray();
 
         Assertions.assertEquals(0b0, byteArray[0]);
@@ -25,7 +25,7 @@ public class MqttDownLinkHeaderParserTest {
 
         byte[] payload = { (byte) 0b10101010 };
 
-        MqttDownLinkHeaderParser header = new MqttDownLinkHeaderParser(payload.length, MqttDownLinkFrameType.DOWNLINK_FRAME_TYPE_SPOT_SYNC);
+        MqttDownLinkHeaderParserImpl header = new MqttDownLinkHeaderParserImpl(payload.length, MqttDownLinkFrameTypeImpl.DOWNLINK_FRAME_TYPE_SPOT_SYNC);
         byte[] byteArray = header.toByteArray();
 
         Assertions.assertEquals(0b0, byteArray[0]);
@@ -47,7 +47,7 @@ public class MqttDownLinkHeaderParserTest {
                 0b00000011,
         };
 
-        MqttDownLinkHeaderParser header = new MqttDownLinkHeaderParser(payload.length, MqttDownLinkFrameType.DOWNLINK_FRAME_TYPE_ANIMAL_SYNC);
+        MqttDownLinkHeaderParserImpl header = new MqttDownLinkHeaderParserImpl(payload.length, MqttDownLinkFrameTypeImpl.DOWNLINK_FRAME_TYPE_ANIMAL_SYNC);
         byte[] byteArray = header.toByteArray();
 
         Assertions.assertEquals(0b0, byteArray[0]);

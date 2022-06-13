@@ -1,13 +1,12 @@
-package br.ufmg.watchdogs.server.mqtt.uplink;
+package br.ufmg.watchdogs.server.mqtt.client.impl;
 
-import br.ufmg.watchdogs.server.mqtt.client.impl.MqttClientConnectorPahoImpl;
-import br.ufmg.watchdogs.server.mqtt.uplink.payload.MqttUpLinkFrameType;
-import br.ufmg.watchdogs.server.mqtt.uplink.payload.MqttUpLinkMessage;
+import br.ufmg.watchdogs.server.mqtt.client.MqttSubListenerAdapter;
+import br.ufmg.watchdogs.server.mqtt.uplink.payload.impl.MqttUpLinkFrameTypeImpl;
+import br.ufmg.watchdogs.server.mqtt.uplink.payload.impl.MqttUpLinkMessageImpl;
 import br.ufmg.watchdogs.server.mqtt.uplink.service.MqttUpLinkService;
 import br.ufmg.watchdogs.server.mqtt.uplink.service.impl.*;
-import br.ufmg.watchdogs.server.mqtt.uplink.topic.MqttUpLinkTopics;
+import br.ufmg.watchdogs.server.mqtt.uplink.topic.impl.MqttUpLinkTopicImpl;
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
-import org.eclipse.paho.client.mqttv3.MqttCallback;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,14 +17,14 @@ import java.util.Arrays;
 import java.util.List;
 
 @Service
-public class MqttSubHandle implements MqttCallback {
+public class MqttSubListenerAdapterPahoImpl implements MqttSubListenerAdapter {
 
-    private final MqttClientConnectorPahoImpl mqttClientConnector;
+    private final MqttClientAdapterPahoImpl mqttClientConnector;
     private final List<MqttUpLinkService> services = new ArrayList<>();
 
     @Autowired
-    public MqttSubHandle(
-            MqttClientConnectorPahoImpl mqttClientConnector,
+    public MqttSubListenerAdapterPahoImpl(
+            MqttClientAdapterPahoImpl mqttClientConnector,
             MqttUpLinkAckServiceImpl uplinkAckService,
             MqttUpLinkSpotSyncServiceImpl uplinkSpotSyncService,
             MqttUpLinkAnimalSyncServiceImpl uplinkAnimalSyncService,
@@ -58,17 +57,18 @@ public class MqttSubHandle implements MqttCallback {
         System.out.println("Payload: " + Arrays.toString(mqttMessage.getPayload()));
         System.out.println("Message: " + new String(mqttMessage.getPayload(), StandardCharsets.UTF_8));
 
-        MqttUpLinkMessage mqttUplinkMessage = new MqttUpLinkMessage(mqttMessage.getPayload());
-        MqttUpLinkService service = this.getMqttUpLinkService(mqttUplinkMessage);
+        MqttUpLinkMessageImpl mqttUplinkMessageImpl = new MqttUpLinkMessageImpl(mqttMessage.getPayload());
+        MqttUpLinkService service = this.getMqttUpLinkService(mqttUplinkMessageImpl);
 
-        service.process(mqttUplinkMessage, topic);
+        service.process(mqttUplinkMessageImpl, topic);
     }
 
+    @Override
     public void listen() {
 
         this.mqttClientConnector.setSubListenerCallback(this);
 
-        Arrays.stream(MqttUpLinkTopics.values()).forEach(topic -> {
+        Arrays.stream(MqttUpLinkTopicImpl.values()).forEach(topic -> {
 
             System.out.print("Tying to subscribe to topic: " + topic.getTopicName() + "... ");
             this.mqttClientConnector.subscribe(topic.getTopicName(), topic.getTopicQoS());
@@ -76,13 +76,14 @@ public class MqttSubHandle implements MqttCallback {
         });
     }
 
-    private MqttUpLinkService getMqttUpLinkService(MqttUpLinkMessage mqttUplinkMessage) {
+    @Override
+    public MqttUpLinkService getMqttUpLinkService(MqttUpLinkMessageImpl mqttUplinkMessageImpl) {
 
-        MqttUpLinkFrameType receivedMqttUpLinkFrameType = mqttUplinkMessage.getHeader().getMqttUpLinkFrameType();
+        MqttUpLinkFrameTypeImpl receivedMqttUpLinkFrameTypeImpl = mqttUplinkMessageImpl.getHeader().getMqttUpLinkFrameType();
 
         return this.services.stream()
-                .filter(service -> service.upLinkFrameType() == receivedMqttUpLinkFrameType)
+                .filter(service -> service.upLinkFrameType() == receivedMqttUpLinkFrameTypeImpl)
                 .findFirst()
-                .orElseThrow(() -> new RuntimeException("Could not find MqttUpLinkService to handle " + receivedMqttUpLinkFrameType.name() + " frame type!"));
+                .orElseThrow(() -> new RuntimeException("Could not find MqttUpLinkService to handle " + receivedMqttUpLinkFrameTypeImpl.name() + " frame type!"));
     }
 }
