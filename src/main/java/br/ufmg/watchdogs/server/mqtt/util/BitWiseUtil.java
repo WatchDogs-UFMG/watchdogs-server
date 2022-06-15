@@ -40,7 +40,7 @@ public class BitWiseUtil {
         return BitWiseUtil.applyBitMask(BitWiseUtil.shiftByte(originalByte, unsignedRightShift), bitsMaskCount);
     }
 
-    public static Long concatBytes(Long rightByte, Long leftByte, Integer leftByteOffset) {
+    public static Long concatBytes(Long leftByte, Long rightByte, Integer leftByteOffset) {
         return (rightByte + (leftByte << leftByteOffset));
     }
 

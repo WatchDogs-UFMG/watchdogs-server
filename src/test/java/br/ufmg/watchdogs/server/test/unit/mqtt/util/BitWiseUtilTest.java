@@ -63,17 +63,17 @@ public class BitWiseUtilTest {
     @Test
     void shouldConcatTwoBytes() {
 
-        Long concatBytes1 = BitWiseUtil.concatBytes(byte2, byte1, 32);
+        Long concatBytes1 = BitWiseUtil.concatBytes(byte1, byte2, 32);
 
         Long concatBytes2 = 0L;
-        concatBytes2 = BitWiseUtil.concatBytes(concatBytes2, 0b1000L, 0);
-        concatBytes2 = BitWiseUtil.concatBytes(concatBytes2, 0b0001L, 4);
-        concatBytes2 = BitWiseUtil.concatBytes(concatBytes2, 0b0011L, 8);
-        concatBytes2 = BitWiseUtil.concatBytes(concatBytes2, 0b1100L, 12);
-        concatBytes2 = BitWiseUtil.concatBytes(concatBytes2, 0b0101L, 16);
-        concatBytes2 = BitWiseUtil.concatBytes(concatBytes2, 0b1010L, 20);
-        concatBytes2 = BitWiseUtil.concatBytes(concatBytes2, 0b1001L, 24);
-        concatBytes2 = BitWiseUtil.concatBytes(concatBytes2, 0b0110L, 28);
+        concatBytes2 = BitWiseUtil.concatBytes(0b1000L, concatBytes2, 0);
+        concatBytes2 = BitWiseUtil.concatBytes(0b0001L, concatBytes2, 4);
+        concatBytes2 = BitWiseUtil.concatBytes(0b0011L, concatBytes2, 8);
+        concatBytes2 = BitWiseUtil.concatBytes(0b1100L, concatBytes2, 12);
+        concatBytes2 = BitWiseUtil.concatBytes(0b0101L, concatBytes2, 16);
+        concatBytes2 = BitWiseUtil.concatBytes(0b1010L, concatBytes2, 20);
+        concatBytes2 = BitWiseUtil.concatBytes(0b1001L, concatBytes2, 24);
+        concatBytes2 = BitWiseUtil.concatBytes(0b0110L, concatBytes2, 28);
 
         Assertions.assertEquals(longByte, concatBytes1);
         Assertions.assertEquals(byte1.longValue(), concatBytes2);

@@ -27,14 +27,14 @@ public class MqttDownLinkHeaderParserImpl implements MqttDownLinkHeaderParser {
     public byte[] toByteArray() {
 
         byte byteValue1 = BitWiseUtil.concatBytes(
-                (long) MqttDownLinkHeaderParserImpl.FIRMWARE_VERSION.getVersion(),
                 (long) MqttDownLinkHeaderParserImpl.PROTOCOL_VERSION.getVersion(),
+                (long) MqttDownLinkHeaderParserImpl.FIRMWARE_VERSION.getVersion(),
                 MqttDownLinkHeaderParserImpl.PROTOCOL_VERSION_OFFSET
         ).byteValue();
 
         byte byteValue2 = BitWiseUtil.concatBytes(
-                BitWiseUtil.getByteSlice((long) this.payloadLength, 4, 8),
                 (long) this.mqttDownLinkFrameTypeImpl.getType(),
+                BitWiseUtil.getByteSlice((long) this.payloadLength, 4, 8),
                 MqttDownLinkHeaderParserImpl.PAYLOAD_LENGTH_OFFSET
         ).byteValue();
 
