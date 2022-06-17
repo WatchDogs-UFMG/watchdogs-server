@@ -1,8 +1,8 @@
 package br.ufmg.watchdogs.server.api.dto;
 
 import br.ufmg.watchdogs.server.api.model.User;
-import br.ufmg.watchdogs.server.api.util.MyDateFormatterUtil;
-import br.ufmg.watchdogs.server.api.util.MyDateTimeFormatterUtil;
+import br.ufmg.watchdogs.server.util.DateFormatterUtil;
+import br.ufmg.watchdogs.server.util.DateTimeFormatterUtil;
 
 public class UserDto {
 
@@ -26,9 +26,9 @@ public class UserDto {
         this.email = user.getEmail();
         this.password = user.getPassword();
         this.name = user.getName();
-        this.creationDate = user.getCreationDate().format(MyDateTimeFormatterUtil.FORMATTER);
-        this.lastUpdateDate = user.getLastUpdateDate().format(MyDateTimeFormatterUtil.FORMATTER);
-        this.birthdayDate = user.getBirthdayDate().format(MyDateFormatterUtil.FORMATTER);
+        this.creationDate = user.getCreationDate().format(DateTimeFormatterUtil.FORMATTER);
+        this.lastUpdateDate = user.getLastUpdateDate().format(DateTimeFormatterUtil.FORMATTER);
+        this.birthdayDate = user.getBirthdayDate().format(DateFormatterUtil.FORMATTER);
     }
 
     public Long getId() {

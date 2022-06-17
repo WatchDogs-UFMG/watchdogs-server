@@ -1,11 +1,12 @@
 package br.ufmg.watchdogs.server.mqtt.uplink.payload.parser.impl;
 
-import br.ufmg.watchdogs.server.api.util.MyDateTimeFormatterUtil;
+import br.ufmg.watchdogs.server.util.DateTimeFormatterUtil;
 import br.ufmg.watchdogs.server.mqtt.protocol.FirmwareVersion;
 import br.ufmg.watchdogs.server.mqtt.protocol.ProtocolVersion;
 import br.ufmg.watchdogs.server.mqtt.uplink.payload.impl.MqttUpLinkFrameTypeImpl;
 import br.ufmg.watchdogs.server.mqtt.uplink.payload.parser.MqttUpLinkHeaderParser;
-import br.ufmg.watchdogs.server.mqtt.util.BitWiseUtil;
+import br.ufmg.watchdogs.server.util.BitWiseUtil;
+import br.ufmg.watchdogs.server.util.NumberStringFormatterUtil;
 
 import java.time.LocalDateTime;
 import java.util.Arrays;
@@ -128,7 +129,7 @@ public class MqttUpLinkHeaderParserImpl implements MqttUpLinkHeaderParser {
         Long spotIDNumber = BitWiseUtil.extractLongValue(headerPayload, SPOT_ID_START_BIT, SPOT_ID_END_BIT);
         String hexString = Long.toHexString(spotIDNumber);
 
-        return this.formatString(hexString, MqttUpLinkHeaderParserImpl.SPOT_ID_STRING_LENGTH);
+        return NumberStringFormatterUtil.formatString(hexString, MqttUpLinkHeaderParserImpl.SPOT_ID_STRING_LENGTH);
     }
 
     private LocalDateTime parseTimestamp(byte[] headerPayload) {
@@ -139,41 +140,15 @@ public class MqttUpLinkHeaderParserImpl implements MqttUpLinkHeaderParser {
         Long monthNumber = BitWiseUtil.extractLongValue(headerPayload, MONTH_START_BIT, MONTH_END_BIT);
         Long yearNumber = BitWiseUtil.extractLongValue(headerPayload, YEAR_START_BIT, YEAR_END_BIT);
 
-        String minuteString = this.formatString(minuteNumber.toString(), 2);
-        String hourString = this.formatString(hourNumber.toString(), 2);
-        String dayString = this.formatString(dayNumber.toString(), 2);
-        String monthString = this.formatString(monthNumber.toString(), 2);
-        String yearString = this.formatString(yearNumber.toString(), 4);
-
-        String formattedDateTimeString = this.formatDateTimeString(minuteString, hourString, dayString, monthString, yearString);
-
-        return LocalDateTime.parse(formattedDateTimeString, MyDateTimeFormatterUtil.FORMATTER);
-    }
-
-    private String formatString(String originalString, Integer finalLength) {
-
-        StringBuilder originalStringBuilder = new StringBuilder(originalString);
-
-        for (int i = originalStringBuilder.length(); i < finalLength; i++) {
-            originalStringBuilder.insert(0, "0");
-        }
-
-        return originalStringBuilder.toString();
-    }
-
-    private String formatDateTimeString(
-            String minuteString,
-            String hourString,
-            String dayString,
-            String monthString,
-            String yearString
-    ) {
-        return String.format("%s/%s/%s %s:%s:00",
-                dayString,
-                monthString,
-                yearString,
-                hourString,
-                minuteString
+        String formattedDateTimeString = DateTimeFormatterUtil.getFormattedDateTimeString(
+                0L,
+                minuteNumber,
+                hourNumber,
+                dayNumber,
+                monthNumber,
+                yearNumber
         );
+
+        return DateTimeFormatterUtil.parseFromFormattedString(formattedDateTimeString);
     }
 }

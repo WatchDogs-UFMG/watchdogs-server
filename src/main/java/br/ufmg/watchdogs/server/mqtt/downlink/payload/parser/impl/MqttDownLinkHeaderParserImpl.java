@@ -4,7 +4,7 @@ import br.ufmg.watchdogs.server.mqtt.downlink.payload.MqttDownLinkFrameType;
 import br.ufmg.watchdogs.server.mqtt.downlink.payload.parser.MqttDownLinkHeaderParser;
 import br.ufmg.watchdogs.server.mqtt.protocol.FirmwareVersion;
 import br.ufmg.watchdogs.server.mqtt.protocol.ProtocolVersion;
-import br.ufmg.watchdogs.server.mqtt.util.BitWiseUtil;
+import br.ufmg.watchdogs.server.util.BitWiseUtil;
 
 public class MqttDownLinkHeaderParserImpl implements MqttDownLinkHeaderParser {
 

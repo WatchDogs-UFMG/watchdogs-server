@@ -1,6 +1,6 @@
-package br.ufmg.watchdogs.server.test.unit.mqtt.util;
+package br.ufmg.watchdogs.server.test.unit.util;
 
-import br.ufmg.watchdogs.server.mqtt.util.BitWiseUtil;
+import br.ufmg.watchdogs.server.util.BitWiseUtil;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

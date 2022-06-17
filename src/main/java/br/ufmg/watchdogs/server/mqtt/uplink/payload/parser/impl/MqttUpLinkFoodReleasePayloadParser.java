@@ -1,7 +1,7 @@
 package br.ufmg.watchdogs.server.mqtt.uplink.payload.parser.impl;
 
 import br.ufmg.watchdogs.server.mqtt.uplink.payload.parser.MqttUpLinkPayloadParser;
-import br.ufmg.watchdogs.server.mqtt.util.BitWiseUtil;
+import br.ufmg.watchdogs.server.util.BitWiseUtil;
 
 import java.util.Arrays;
 

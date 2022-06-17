@@ -1,7 +1,7 @@
 package br.ufmg.watchdogs.server.mqtt.downlink.payload.parser.impl;
 
 import br.ufmg.watchdogs.server.mqtt.downlink.payload.parser.MqttDownLinkPayloadParser;
-import br.ufmg.watchdogs.server.mqtt.util.BitWiseUtil;
+import br.ufmg.watchdogs.server.util.BitWiseUtil;
 
 public class MqttDownLinkAckPayloadParserImpl implements MqttDownLinkPayloadParser {
 

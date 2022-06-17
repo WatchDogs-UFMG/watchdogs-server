@@ -1,4 +1,4 @@
-package br.ufmg.watchdogs.server.mqtt.util;
+package br.ufmg.watchdogs.server.util;
 
 public enum BitWiseMask {
 

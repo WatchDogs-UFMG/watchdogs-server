@@ -1,7 +1,7 @@
 package br.ufmg.watchdogs.server.mqtt.downlink.payload.parser.impl;
 
 import br.ufmg.watchdogs.server.mqtt.downlink.payload.parser.MqttDownLinkPayloadParser;
-import br.ufmg.watchdogs.server.mqtt.util.BitWiseUtil;
+import br.ufmg.watchdogs.server.util.BitWiseUtil;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -16,6 +16,20 @@ public class MqttDownLinkSpotSyncPayloadParserImpl implements MqttDownLinkPayloa
     private static final Integer ENABLE_FOOD_LEVEL_SENSOR_OFFSET = 5;
     private static final Integer ENABLE_WATER_LEVEL_SENSOR_OFFSET = 6;
     private static final Integer ENABLE_WIFI_SLEEP_MODE_OFFSET = 7;
+
+    public static final Integer SECOND_START_BIT = 8;
+    public static final Integer SECOND_END_BIT = 14;
+    public static final Integer MINUTE_START_BIT = 14;
+    public static final Integer MINUTE_END_BIT = 20;
+    public static final Integer HOUR_START_BIT = 20;
+    public static final Integer HOUR_END_BIT = 25;
+    public static final Integer DAY_START_BIT = 25;
+    public static final Integer DAY_END_BIT = 30;
+    public static final Integer MONTH_START_BIT = 30;
+    public static final Integer MONTH_END_BIT = 34;
+    public static final Integer YEAR_START_BIT = 34;
+    public static final Integer YEAR_END_BIT = 46;
+
     private final boolean enableSpot;
     private final boolean enableFoodRelease;
     private final boolean enableCam;
@@ -24,7 +38,6 @@ public class MqttDownLinkSpotSyncPayloadParserImpl implements MqttDownLinkPayloa
     private final boolean enableFoodLevelSensor;
     private final boolean enableWaterLevelSensor;
     private final boolean enableWiFiSleep;
-
     private final LocalDateTime currentDateTime;
 
     public MqttDownLinkSpotSyncPayloadParserImpl(
@@ -48,6 +61,28 @@ public class MqttDownLinkSpotSyncPayloadParserImpl implements MqttDownLinkPayloa
         this.currentDateTime = LocalDateTime.now(ZoneId.of("America/Sao_Paulo"));
     }
 
+    public MqttDownLinkSpotSyncPayloadParserImpl(
+            boolean enableSpot,
+            boolean enableFoodRelease,
+            boolean enableCam,
+            boolean enableAnimalIdentification,
+            boolean enablePresenceSensor,
+            boolean enableFoodLevelSensor,
+            boolean enableWaterLevelSensor,
+            boolean enableWiFiSleep,
+            LocalDateTime currentDateTime
+    ) {
+        this.enableSpot = enableSpot;
+        this.enableFoodRelease = enableFoodRelease;
+        this.enableCam = enableCam;
+        this.enableAnimalIdentification = enableAnimalIdentification;
+        this.enablePresenceSensor = enablePresenceSensor;
+        this.enableFoodLevelSensor = enableFoodLevelSensor;
+        this.enableWaterLevelSensor = enableWaterLevelSensor;
+        this.enableWiFiSleep = enableWiFiSleep;
+        this.currentDateTime = currentDateTime;
+    }
+
     @Override
     public byte[] toByteArray() {
 
@@ -61,7 +96,7 @@ public class MqttDownLinkSpotSyncPayloadParserImpl implements MqttDownLinkPayloa
         flags = BitWiseUtil.concatBytes(this.enableWaterLevelSensor ? 0b1L : 0b0L, flags, ENABLE_WATER_LEVEL_SENSOR_OFFSET);
         flags = BitWiseUtil.concatBytes(this.enableWiFiSleep ? 0b1L : 0b0L, flags, ENABLE_WIFI_SLEEP_MODE_OFFSET);
 
-        byte dateTimeByte1 = BitWiseUtil.concatBytes(
+        Long dateTimeLong1 = BitWiseUtil.concatBytes(
                 BitWiseUtil.getByteSlice(
                         (long) this.currentDateTime.getSecond(),
                         6,
@@ -73,9 +108,9 @@ public class MqttDownLinkSpotSyncPayloadParserImpl implements MqttDownLinkPayloa
                         4
                 ),
                 2
-        ).byteValue();
+        );
 
-        byte dateTimeByte2 = BitWiseUtil.concatBytes(
+        Long dateTimeLong2 = BitWiseUtil.concatBytes(
                 BitWiseUtil.getByteSlice(
                         (long) this.currentDateTime.getMinute(),
                         4,
@@ -87,9 +122,9 @@ public class MqttDownLinkSpotSyncPayloadParserImpl implements MqttDownLinkPayloa
                         1
                 ),
                 4
-        ).byteValue();
+        );
 
-        byte dateTimeByte3 = BitWiseUtil.concatBytes(
+        Long dateTimeLong3 = BitWiseUtil.concatBytes(
                 BitWiseUtil.getByteSlice(
                         (long) this.currentDateTime.getHour(),
                         1,
@@ -104,19 +139,19 @@ public class MqttDownLinkSpotSyncPayloadParserImpl implements MqttDownLinkPayloa
                         2
                 ),
                 7
-        ).byteValue();
+        );
 
-        dateTimeByte3 = BitWiseUtil.concatBytes(
-                (long) dateTimeByte3,
+        dateTimeLong3 = BitWiseUtil.concatBytes(
+                dateTimeLong3,
                 BitWiseUtil.getByteSlice(
                         (long) this.currentDateTime.getMonth().getValue(),
                         2,
                         2
                 ),
-                2
-        ).byteValue();
+                0
+        );
 
-        byte dateTimeByte4 = BitWiseUtil.concatBytes(
+        Long dateTimeLong4 = BitWiseUtil.concatBytes(
                 BitWiseUtil.getByteSlice(
                         (long) this.currentDateTime.getMonth().getValue(),
                         2,
@@ -128,9 +163,9 @@ public class MqttDownLinkSpotSyncPayloadParserImpl implements MqttDownLinkPayloa
                         6
                 ),
                 6
-        ).byteValue();
+        );
 
-        byte dateTimeByte5 = BitWiseUtil.concatBytes(
+        Long dateTimeLong5 = BitWiseUtil.concatBytes(
                 BitWiseUtil.getByteSlice(
                         (long) this.currentDateTime.getYear(),
                         6,
@@ -138,15 +173,15 @@ public class MqttDownLinkSpotSyncPayloadParserImpl implements MqttDownLinkPayloa
                 ),
                 0L,
                 2
-        ).byteValue();
+        );
 
         return new byte[] {
                 flags.byteValue(),
-                dateTimeByte1,
-                dateTimeByte2,
-                dateTimeByte3,
-                dateTimeByte4,
-                dateTimeByte5
+                dateTimeLong1.byteValue(),
+                dateTimeLong2.byteValue(),
+                dateTimeLong3.byteValue(),
+                dateTimeLong4.byteValue(),
+                dateTimeLong5.byteValue()
         };
     }
 }

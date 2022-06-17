@@ -1,7 +1,7 @@
 package br.ufmg.watchdogs.server.api.exception;
 
-import br.ufmg.watchdogs.server.api.util.MyDateTimeFormatterUtil;
-import br.ufmg.watchdogs.server.api.util.MyStringStackTraceUtil;
+import br.ufmg.watchdogs.server.util.DateTimeFormatterUtil;
+import br.ufmg.watchdogs.server.util.StringStackTraceUtil;
 
 import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDateTime;
@@ -16,10 +16,10 @@ public class ExceptionEntity {
     private final String path;
 
     public ExceptionEntity(MyBaseException exception, HttpServletRequest request) {
-        this.timestamp = LocalDateTime.now().format(MyDateTimeFormatterUtil.FORMATTER);
+        this.timestamp = LocalDateTime.now().format(DateTimeFormatterUtil.FORMATTER);
         this.status = exception.getExceptionHttpStatus().value();
         this.error = exception.getExceptionHttpStatus().getReasonPhrase();
-        this.trace = new MyStringStackTraceUtil().getStringStackTrace(exception);
+        this.trace = new StringStackTraceUtil().getStringStackTrace(exception);
         this.message = exception.getMessage() + (exception.getMessage().endsWith("!") ? "" : "!");
         this.path = request.getRequestURI();
     }

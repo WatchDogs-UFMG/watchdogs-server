@@ -1,7 +1,7 @@
 package br.ufmg.watchdogs.server.api.dto;
 
 import br.ufmg.watchdogs.server.api.model.Profile;
-import br.ufmg.watchdogs.server.api.util.MyDateTimeFormatterUtil;
+import br.ufmg.watchdogs.server.util.DateTimeFormatterUtil;
 
 public class ProfileDto {
 
@@ -17,8 +17,8 @@ public class ProfileDto {
     public ProfileDto(Profile profile) {
         this.id = profile.getId();
         this.role = profile.getRole().toString();
-        this.creationDate = profile.getCreationDate().format(MyDateTimeFormatterUtil.FORMATTER);
-        this.lastUpdateDate = profile.getLastUpdateDate().format(MyDateTimeFormatterUtil.FORMATTER);
+        this.creationDate = profile.getCreationDate().format(DateTimeFormatterUtil.FORMATTER);
+        this.lastUpdateDate = profile.getLastUpdateDate().format(DateTimeFormatterUtil.FORMATTER);
         this.usersCount = profile.getUsers().size();
     }
 

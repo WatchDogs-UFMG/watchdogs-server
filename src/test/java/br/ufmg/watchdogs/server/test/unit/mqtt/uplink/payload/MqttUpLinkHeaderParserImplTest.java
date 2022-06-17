@@ -1,6 +1,6 @@
 package br.ufmg.watchdogs.server.test.unit.mqtt.uplink.payload;
 
-import br.ufmg.watchdogs.server.api.util.MyDateTimeFormatterUtil;
+import br.ufmg.watchdogs.server.util.DateTimeFormatterUtil;
 import br.ufmg.watchdogs.server.mqtt.protocol.FirmwareVersion;
 import br.ufmg.watchdogs.server.mqtt.protocol.ProtocolVersion;
 import br.ufmg.watchdogs.server.mqtt.uplink.payload.impl.MqttUpLinkFrameTypeImpl;
@@ -40,7 +40,7 @@ public class MqttUpLinkHeaderParserImplTest {
         Assertions.assertEquals(255, header.getPayloadCountID());
         Assertions.assertEquals(0, header.getPayloadLength());
         Assertions.assertEquals("909192939495", header.getSpotID());
-        Assertions.assertEquals("01/01/0001 01:01:00", header.getTimestamp().format(MyDateTimeFormatterUtil.FORMATTER));
+        Assertions.assertEquals("01/01/0001 01:01:00", header.getTimestamp().format(DateTimeFormatterUtil.FORMATTER));
     }
 
 
@@ -74,6 +74,6 @@ public class MqttUpLinkHeaderParserImplTest {
         Assertions.assertEquals(255, header.getPayloadCountID());
         Assertions.assertEquals(0, header.getPayloadLength());
         Assertions.assertEquals("909192939495", header.getSpotID());
-        Assertions.assertEquals("31/12/4095 23:59:00", header.getTimestamp().format(MyDateTimeFormatterUtil.FORMATTER));
+        Assertions.assertEquals("31/12/4095 23:59:00", header.getTimestamp().format(DateTimeFormatterUtil.FORMATTER));
     }
 }
