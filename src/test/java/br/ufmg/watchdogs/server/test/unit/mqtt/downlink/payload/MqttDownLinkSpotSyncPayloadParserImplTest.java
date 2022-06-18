@@ -27,13 +27,6 @@ public class MqttDownLinkSpotSyncPayloadParserImplTest {
                 currentDateTime
         );
 
-        // 10100101
-        // 00101000 -> 40
-        // 10100101 -> 165
-        // 00101010 -> 42 10100010
-        // 10011111 -> 159
-        // 01101000 -> 104
-
         byte[] byteArray = spotSyncFrameParser.toByteArray();
 
         Long parsedSecond = BitWiseUtil.extractLongValue(

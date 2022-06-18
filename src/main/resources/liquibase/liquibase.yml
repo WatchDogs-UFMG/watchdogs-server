@@ -1,1 +1,5 @@
-driver: 
+driver: org.mariadb.jdbc.Driver
+url: jdbc:mariadb://watchdogs_mariadb_db:3306/watchdogs_db
+username: root
+password: QBbtm4QH3KvrmPC7
+changeLogFile: sql/db.changelog-master.xml
