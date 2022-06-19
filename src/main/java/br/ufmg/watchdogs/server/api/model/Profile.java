@@ -22,10 +22,23 @@ public class Profile implements GrantedAuthority {
     private UserProfiles role = UserProfiles.ROLE_USER;
 
     private LocalDateTime creationDate;
-
     private LocalDateTime lastUpdateDate;
 
     public Profile() {
+    }
+
+    public Profile(
+            Long id,
+            List<User> users,
+            UserProfiles role,
+            LocalDateTime creationDate,
+            LocalDateTime lastUpdateDate
+    ) {
+        this.id = id;
+        this.users = users;
+        this.role = role;
+        this.creationDate = creationDate;
+        this.lastUpdateDate = lastUpdateDate;
     }
 
     @Override

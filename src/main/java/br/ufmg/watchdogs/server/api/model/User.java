@@ -20,20 +20,36 @@ public class User implements UserDetails {
     private Profile profile;
 
     private String username;
-
     private String email;
-
     private String password;
-
     private String name;
-
     private LocalDate birthdayDate;
-
     private LocalDateTime creationDate;
-
     private LocalDateTime lastUpdateDate;
 
     public User() {
+    }
+
+    public User(
+            Long id,
+            Profile profile,
+            String username,
+            String email,
+            String password,
+            String name,
+            LocalDate birthdayDate,
+            LocalDateTime creationDate,
+            LocalDateTime lastUpdateDate
+    ) {
+        this.id = id;
+        this.profile = profile;
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.name = name;
+        this.birthdayDate = birthdayDate;
+        this.creationDate = creationDate;
+        this.lastUpdateDate = lastUpdateDate;
     }
 
     public Long getId() {
@@ -142,6 +158,4 @@ public class User implements UserDetails {
         this.lastUpdateDate = lastUpdateDate;
         return this;
     }
-
-
 }
