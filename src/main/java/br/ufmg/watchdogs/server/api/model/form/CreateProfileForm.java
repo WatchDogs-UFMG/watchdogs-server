@@ -1,4 +1,4 @@
-package br.ufmg.watchdogs.server.api.form;
+package br.ufmg.watchdogs.server.api.model.form;
 
 import br.ufmg.watchdogs.server.api.model.Profile;
 import br.ufmg.watchdogs.server.api.model.UserProfiles;

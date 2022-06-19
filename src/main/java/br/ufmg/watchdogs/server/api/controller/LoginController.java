@@ -1,7 +1,7 @@
 package br.ufmg.watchdogs.server.api.controller;
 
-import br.ufmg.watchdogs.server.api.dto.LoginDto;
-import br.ufmg.watchdogs.server.api.form.LoginForm;
+import br.ufmg.watchdogs.server.api.model.dto.LoginDto;
+import br.ufmg.watchdogs.server.api.model.form.LoginForm;
 import br.ufmg.watchdogs.server.api.model.User;
 import br.ufmg.watchdogs.server.api.service.TokenService;
 import org.springframework.beans.factory.annotation.Autowired;

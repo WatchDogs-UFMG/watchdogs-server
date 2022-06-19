@@ -1,4 +1,4 @@
-package br.ufmg.watchdogs.server.api.form;
+package br.ufmg.watchdogs.server.api.model.form;
 
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;

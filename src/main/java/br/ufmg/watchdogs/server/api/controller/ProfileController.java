@@ -1,8 +1,8 @@
 package br.ufmg.watchdogs.server.api.controller;
 
-import br.ufmg.watchdogs.server.api.dto.ProfileDto;
-import br.ufmg.watchdogs.server.api.form.CreateProfileForm;
-import br.ufmg.watchdogs.server.api.form.UpdateProfileForm;
+import br.ufmg.watchdogs.server.api.model.dto.ProfileDto;
+import br.ufmg.watchdogs.server.api.model.form.CreateProfileForm;
+import br.ufmg.watchdogs.server.api.model.form.UpdateProfileForm;
 import br.ufmg.watchdogs.server.api.model.Profile;
 import br.ufmg.watchdogs.server.api.service.ProfileService;
 import org.springframework.beans.factory.annotation.Autowired;

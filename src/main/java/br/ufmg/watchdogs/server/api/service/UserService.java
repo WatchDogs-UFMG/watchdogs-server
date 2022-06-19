@@ -2,8 +2,8 @@ package br.ufmg.watchdogs.server.api.service;
 
 import br.ufmg.watchdogs.server.api.exception.MyDataNotFoundException;
 import br.ufmg.watchdogs.server.api.repository.UserRepository;
-import br.ufmg.watchdogs.server.api.form.CreateUserForm;
-import br.ufmg.watchdogs.server.api.form.UpdateUserForm;
+import br.ufmg.watchdogs.server.api.model.form.CreateUserForm;
+import br.ufmg.watchdogs.server.api.model.form.UpdateUserForm;
 import br.ufmg.watchdogs.server.api.model.Profile;
 import br.ufmg.watchdogs.server.api.model.User;
 import org.springframework.beans.factory.annotation.Autowired;

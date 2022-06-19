@@ -132,7 +132,11 @@
 				<configuration>
 					<excludes>
 						<exclude>org/apache/**/*</exclude>
-						<exclude>br/ufmg/watchdogs/server/**/*DTO.*</exclude>
+						<exclude>br/ufmg/watchdogs/server/api/model/**/*</exclude>
+						<exclude>br/ufmg/watchdogs/server/api/repository/**/*</exclude>
+						<exclude>br/ufmg/watchdogs/server/api/config/**/*</exclude>
+						<exclude>br/ufmg/watchdogs/server/api/filter/**/*</exclude>
+						<exclude>br/ufmg/watchdogs/server/api/exception/**/*</exclude>
 					</excludes>
 				</configuration>
 				<executions>

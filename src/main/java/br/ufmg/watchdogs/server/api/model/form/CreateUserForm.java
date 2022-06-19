@@ -1,4 +1,4 @@
-package br.ufmg.watchdogs.server.api.form;
+package br.ufmg.watchdogs.server.api.model.form;
 
 import br.ufmg.watchdogs.server.api.exception.MyDataNotFoundException;
 import br.ufmg.watchdogs.server.api.model.Profile;
@@ -10,11 +10,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
 
-public class UpdateUserForm {
-
-    @NotNull(message = "Esse campo deve ser preenchido")
-    @Positive(message = "O id deve ser um número inteiro e positivo")
-    private Long id;
+public class CreateUserForm {
 
     @NotBlank(message = "Esse campo deve ser preenchido")
     private String role;
@@ -40,29 +36,31 @@ public class UpdateUserForm {
     )
     private String birthdayDate;
 
-    public UpdateUserForm() {
-    }
-
-    public UpdateUserForm(Long id, String role, String username, String email, String password, String name, String birthdayDate) {
-        this.id = id;
-        this.role = role;
+    public CreateUserForm(String username, String email, String password, String name, String birthdayDate, String profile) {
         this.username = username;
         this.email = email;
         this.password = password;
         this.name = name;
         this.birthdayDate = birthdayDate;
+        this.role = profile;
     }
 
-    public User updateUser(User user, Profile profile) {
+    public CreateUserForm() {
+    }
+
+    public User convertToUser(Profile profile, String encryptedPassword) {
 
         try {
 
-            return user.setProfile(profile)
+            return new User()
+                    .setProfile(profile)
                     .setUsername(this.username)
                     .setEmail(this.email)
-                    .setPassword(this.password)
-                    .setBirthdayDate(LocalDate.parse(this.birthdayDate, DateFormatterUtil.FORMATTER))
-                    .setLastUpdateDate(LocalDateTime.now());
+                    .setPassword(encryptedPassword)
+                    .setName(this.name)
+                    .setCreationDate(LocalDateTime.now())
+                    .setLastUpdateDate(LocalDateTime.now())
+                    .setBirthdayDate(LocalDate.parse(this.birthdayDate, DateFormatterUtil.FORMATTER));
 
         } catch (DateTimeParseException exception) {
 
@@ -71,14 +69,6 @@ public class UpdateUserForm {
                     this.getClass().getName()
             );
         }
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getRole() {

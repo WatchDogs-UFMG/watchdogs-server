@@ -1,4 +1,4 @@
-package br.ufmg.watchdogs.server.api.dto;
+package br.ufmg.watchdogs.server.api.model.dto;
 
 import br.ufmg.watchdogs.server.api.model.User;
 
