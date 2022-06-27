@@ -34,8 +34,10 @@ public class Animal {
     )
     private List<Vaccine> vaccines = new ArrayList<>();
 
-    private String animalID;
+    @Enumerated(EnumType.STRING)
     private AnimalSize size;
+
+    private String animalID;
     private String name;
     private Boolean isCastrated;
     private LocalDateTime creationDate;
@@ -49,8 +51,8 @@ public class Animal {
             List<FoodRelease> foodReleases,
             List<Photo> photos,
             List<Vaccine> vaccines,
-            String animalID,
             AnimalSize size,
+            String animalID,
             String name,
             Boolean isCastrated,
             LocalDateTime creationDate,
@@ -60,8 +62,8 @@ public class Animal {
         this.foodReleases = foodReleases;
         this.photos = photos;
         this.vaccines = vaccines;
-        this.animalID = animalID;
         this.size = size;
+        this.animalID = animalID;
         this.name = name;
         this.isCastrated = isCastrated;
         this.creationDate = creationDate;
@@ -104,21 +106,21 @@ public class Animal {
         return this;
     }
 
-    public String getAnimalID() {
-        return animalID;
-    }
-
-    public Animal setAnimalID(String animalID) {
-        this.animalID = animalID;
-        return this;
-    }
-
     public AnimalSize getSize() {
         return size;
     }
 
     public Animal setSize(AnimalSize size) {
         this.size = size;
+        return this;
+    }
+
+    public String getAnimalID() {
+        return animalID;
+    }
+
+    public Animal setAnimalID(String animalID) {
+        this.animalID = animalID;
         return this;
     }
 

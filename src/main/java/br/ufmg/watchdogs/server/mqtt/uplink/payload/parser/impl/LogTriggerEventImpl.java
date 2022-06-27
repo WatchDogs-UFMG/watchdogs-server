@@ -1,8 +1,8 @@
 package br.ufmg.watchdogs.server.mqtt.uplink.payload.parser.impl;
 
-import br.ufmg.watchdogs.server.mqtt.uplink.payload.parser.LogEventTrigger;
+import br.ufmg.watchdogs.server.mqtt.uplink.payload.parser.LogTriggerEvent;
 
-public enum LogEventTriggerImpl implements LogEventTrigger {
+public enum LogTriggerEventImpl implements LogTriggerEvent {
 
     KIT_RESTART(0b00000000),
     ANIMAL_IDENTIFICATION_ERROR(0b00000001),
@@ -17,7 +17,7 @@ public enum LogEventTriggerImpl implements LogEventTrigger {
 
     private final Integer code;
 
-    LogEventTriggerImpl(Integer code) {
+    LogTriggerEventImpl(Integer code) {
         this.code = code;
     }
 

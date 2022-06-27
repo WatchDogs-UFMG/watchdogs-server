@@ -1,6 +1,6 @@
 package br.ufmg.watchdogs.server.mqtt.uplink.payload.parser;
 
-public interface LogEventTrigger {
+public interface LogTriggerEvent {
 
     Integer getCode();
     String name();
