@@ -1,4 +1,4 @@
-package br.ufmg.watchdogs.server.api.service;
+package br.ufmg.watchdogs.server.api.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -7,12 +7,12 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
-public class AuthenticationService implements UserDetailsService {
+public class AuthenticationServiceImpl implements UserDetailsService {
 
-    private final UserService userService;
+    private final UserServiceImpl userService;
 
     @Autowired
-    public AuthenticationService(UserService userService) {
+    public AuthenticationServiceImpl(UserServiceImpl userService) {
         this.userService = userService;
     }
 

@@ -4,7 +4,7 @@ import br.ufmg.watchdogs.server.api.model.dto.ProfileDto;
 import br.ufmg.watchdogs.server.api.model.form.CreateProfileForm;
 import br.ufmg.watchdogs.server.api.model.form.UpdateProfileForm;
 import br.ufmg.watchdogs.server.api.model.Profile;
-import br.ufmg.watchdogs.server.api.service.ProfileService;
+import br.ufmg.watchdogs.server.api.service.impl.ProfileServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -21,17 +21,17 @@ import java.net.URI;
 @RequestMapping("v1/profile")
 public class ProfileController {
 
-    private final ProfileService profileService;
+    private final ProfileServiceImpl profileService;
 
     @Autowired
-    public ProfileController(ProfileService profileService) {
+    public ProfileController(ProfileServiceImpl profileService) {
         this.profileService = profileService;
     }
 
     @PostMapping
     public ResponseEntity<ProfileDto> createProfile(@Valid @RequestBody CreateProfileForm createProfileForm, UriComponentsBuilder uriComponentsBuilder) {
 
-        Profile profile = this.profileService.createProfile(createProfileForm);
+        Profile profile = this.profileService.create(createProfileForm);
         URI uri = uriComponentsBuilder
                 .path("/profile/{id}")
                 .buildAndExpand(profile.getId())
@@ -48,26 +48,26 @@ public class ProfileController {
     ) {
             return ResponseEntity.ok(
                     this.profileService
-                            .getProfiles(pageable)
+                            .findAll(pageable)
                             .map(ProfileDto::new)
             );
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<ProfileDto> getProfileById(@PathVariable Long id) {
-            Profile profile = this.profileService.getProfileById(id);
+            Profile profile = this.profileService.findById(id);
             return ResponseEntity.ok(new ProfileDto(profile));
     }
 
     @PutMapping
     public ResponseEntity<ProfileDto> updateProfileById(@Valid @RequestBody UpdateProfileForm updateProfileForm) {
-            Profile profile = this.profileService.updateProfileById(updateProfileForm);
+            Profile profile = this.profileService.updateById(updateProfileForm);
             return ResponseEntity.ok(new ProfileDto(profile));
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<ProfileDto> deleteByProfileId(@PathVariable Long id) {
-            Profile profile = this.profileService.deleteByProfileId(id);
+            Profile profile = this.profileService.deleteById(id);
             return ResponseEntity.ok(new ProfileDto(profile));
     }
 }

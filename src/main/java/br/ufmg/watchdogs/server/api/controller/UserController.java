@@ -4,7 +4,7 @@ import br.ufmg.watchdogs.server.api.model.dto.UserDto;
 import br.ufmg.watchdogs.server.api.model.form.CreateUserForm;
 import br.ufmg.watchdogs.server.api.model.form.UpdateUserForm;
 import br.ufmg.watchdogs.server.api.model.User;
-import br.ufmg.watchdogs.server.api.service.UserService;
+import br.ufmg.watchdogs.server.api.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -21,17 +21,17 @@ import java.net.URI;
 @RequestMapping("v1/user")
 public class UserController {
 
-    private final UserService userService;
+    private final UserServiceImpl userService;
 
     @Autowired
-    public UserController(UserService userService) {
+    public UserController(UserServiceImpl userService) {
         this.userService = userService;
     }
 
     @PostMapping
     public ResponseEntity<UserDto> createUser(@Valid @RequestBody CreateUserForm createUserForm, UriComponentsBuilder uriComponentsBuilder) {
 
-        User user = this.userService.createUser(createUserForm);
+        User user = this.userService.create(createUserForm);
         URI uri = uriComponentsBuilder
                 .path("/user/{id}")
                 .buildAndExpand(user.getId())
@@ -48,26 +48,26 @@ public class UserController {
     ) {
         return ResponseEntity.ok(
                 this.userService
-                        .getUsers(pageable)
+                        .findAll(pageable)
                         .map(UserDto::new)
         );
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<UserDto> getUserById(@PathVariable Long id) {
-        User user = this.userService.getUserById(id);
+        User user = this.userService.findById(id);
         return ResponseEntity.ok(new UserDto(user));
     }
 
     @PutMapping
     public ResponseEntity<UserDto> updateUserById(@Valid @RequestBody UpdateUserForm updateUserForm) {
-        User user = this.userService.updateUserById(updateUserForm);
+        User user = this.userService.updateById(updateUserForm);
         return ResponseEntity.ok(new UserDto(user));
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<UserDto> deleteByUserId(@PathVariable Long id) {
-        User user = this.userService.deleteByUserId(id);
+        User user = this.userService.deleteById(id);
         return ResponseEntity.ok(new UserDto(user));
     }
 }

@@ -1,8 +1,8 @@
 package br.ufmg.watchdogs.server.api.config.security;
 
 import br.ufmg.watchdogs.server.api.filter.TokenAuthenticationFilter;
-import br.ufmg.watchdogs.server.api.service.AuthenticationService;
-import br.ufmg.watchdogs.server.api.service.TokenService;
+import br.ufmg.watchdogs.server.api.service.impl.AuthenticationServiceImpl;
+import br.ufmg.watchdogs.server.api.service.impl.TokenServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,17 +21,17 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    private final TokenService tokenService;
+    private final TokenServiceImpl tokenService;
 
-    private final AuthenticationService authenticationService;
+    private final AuthenticationServiceImpl authenticationService;
 
     @Autowired
-    public WebSecurityConfig(TokenService tokenService, AuthenticationService authenticationService) {
+    public WebSecurityConfig(TokenServiceImpl tokenService, AuthenticationServiceImpl authenticationService) {
         this.tokenService = tokenService;
         this.authenticationService = authenticationService;
     }
 
-    public WebSecurityConfig(boolean disableDefaults, TokenService tokenService, AuthenticationService authenticationService) {
+    public WebSecurityConfig(boolean disableDefaults, TokenServiceImpl tokenService, AuthenticationServiceImpl authenticationService) {
         super(disableDefaults);
         this.tokenService = tokenService;
         this.authenticationService = authenticationService;
