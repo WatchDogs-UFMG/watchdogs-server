@@ -3,13 +3,22 @@ package br.ufmg.watchdogs.server.api.service.impl;
 import br.ufmg.watchdogs.server.api.model.Address;
 import br.ufmg.watchdogs.server.api.model.form.CreateAddressForm;
 import br.ufmg.watchdogs.server.api.model.form.UpdateAddressForm;
+import br.ufmg.watchdogs.server.api.repository.AddressRepository;
 import br.ufmg.watchdogs.server.api.service.AddressService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
 
+@Service
 public class AddressServiceImpl implements AddressService {
 
+    private final AddressRepository addressRepository;
 
+    @Autowired
+    public AddressServiceImpl(AddressRepository addressRepository) {
+        this.addressRepository = addressRepository;
+    }
 
     @Override
     public Address create(CreateAddressForm createAddressForm) {
