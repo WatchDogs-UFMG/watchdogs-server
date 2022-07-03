@@ -1,13 +1,14 @@
 package br.ufmg.watchdogs.server.mqtt.uplink.payload.impl;
 
 import br.ufmg.watchdogs.server.mqtt.uplink.payload.MqttUpLinkMessage;
+import br.ufmg.watchdogs.server.mqtt.uplink.payload.parser.MqttUpLinkHeaderParser;
 import br.ufmg.watchdogs.server.mqtt.uplink.payload.parser.impl.MqttUpLinkHeaderParserImpl;
 
 import java.util.Arrays;
 
 public class MqttUpLinkMessageImpl implements MqttUpLinkMessage {
 
-    private final MqttUpLinkHeaderParserImpl header;
+    private final MqttUpLinkHeaderParser header;
     private final byte[] payload;
 
     public MqttUpLinkMessageImpl(byte[] message) {
@@ -24,7 +25,7 @@ public class MqttUpLinkMessageImpl implements MqttUpLinkMessage {
     }
 
     @Override
-    public MqttUpLinkHeaderParserImpl getHeader() {
+    public MqttUpLinkHeaderParser getHeader() {
         return header;
     }
 

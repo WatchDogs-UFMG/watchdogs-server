@@ -1,11 +1,9 @@
 package br.ufmg.watchdogs.server.mqtt.uplink.payload;
 
-import br.ufmg.watchdogs.server.mqtt.uplink.payload.parser.impl.MqttUpLinkHeaderParserImpl;
-
-import java.util.Arrays;
+import br.ufmg.watchdogs.server.mqtt.uplink.payload.parser.MqttUpLinkHeaderParser;
 
 public interface MqttUpLinkMessage {
 
-    MqttUpLinkHeaderParserImpl getHeader();
+    MqttUpLinkHeaderParser getHeader();
     byte[] getPayload();
 }

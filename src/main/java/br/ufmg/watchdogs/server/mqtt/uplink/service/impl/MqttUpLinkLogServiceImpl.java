@@ -6,6 +6,7 @@ import br.ufmg.watchdogs.server.mqtt.downlink.payload.impl.MqttDownLinkMessageIm
 import br.ufmg.watchdogs.server.mqtt.downlink.payload.parser.MqttDownLinkPayloadParser;
 import br.ufmg.watchdogs.server.mqtt.downlink.payload.parser.impl.MqttDownLinkAckPayloadParserImpl;
 import br.ufmg.watchdogs.server.mqtt.downlink.service.MqttDownLinkService;
+import br.ufmg.watchdogs.server.mqtt.downlink.service.impl.MqttDownLinkServiceImpl;
 import br.ufmg.watchdogs.server.mqtt.downlink.topic.impl.MqttDownLinkTopicImpl;
 import br.ufmg.watchdogs.server.mqtt.uplink.payload.MqttUpLinkFrameType;
 import br.ufmg.watchdogs.server.mqtt.uplink.payload.MqttUpLinkMessage;
@@ -20,7 +21,7 @@ public class MqttUpLinkLogServiceImpl implements MqttUpLinkService {
     private final MqttDownLinkService mqttDownLinkService;
 
     @Autowired
-    public MqttUpLinkLogServiceImpl(MqttDownLinkService mqttDownLinkService) {
+    public MqttUpLinkLogServiceImpl(MqttDownLinkServiceImpl mqttDownLinkService) {
         this.mqttDownLinkService = mqttDownLinkService;
     }
 

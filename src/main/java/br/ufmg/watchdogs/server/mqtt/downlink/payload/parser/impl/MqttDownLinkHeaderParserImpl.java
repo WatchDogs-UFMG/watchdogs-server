@@ -15,11 +15,11 @@ public class MqttDownLinkHeaderParserImpl implements MqttDownLinkHeaderParser {
     public static final Integer PROTOCOL_VERSION_OFFSET = 4;
     public static final Integer PAYLOAD_LENGTH_OFFSET = 4;
 
-    private final MqttDownLinkFrameType mqttDownLinkFrameTypeImpl;
+    private final MqttDownLinkFrameType mqttDownLinkFrameType;
     private final Integer payloadLength;
 
     public MqttDownLinkHeaderParserImpl(Integer payloadLength, MqttDownLinkFrameType frameType) {
-        this.mqttDownLinkFrameTypeImpl = frameType;
+        this.mqttDownLinkFrameType = frameType;
         this.payloadLength = payloadLength;
     }
 
@@ -33,7 +33,7 @@ public class MqttDownLinkHeaderParserImpl implements MqttDownLinkHeaderParser {
         ).byteValue();
 
         byte byteValue2 = BitWiseUtil.concatBytes(
-                (long) this.mqttDownLinkFrameTypeImpl.getType(),
+                (long) this.mqttDownLinkFrameType.getType(),
                 BitWiseUtil.getByteSlice((long) this.payloadLength, 4, 8),
                 MqttDownLinkHeaderParserImpl.PAYLOAD_LENGTH_OFFSET
         ).byteValue();
@@ -49,6 +49,6 @@ public class MqttDownLinkHeaderParserImpl implements MqttDownLinkHeaderParser {
 
     @Override
     public MqttDownLinkFrameType getMqttDownLinkFrameType() {
-        return this.mqttDownLinkFrameTypeImpl;
+        return this.mqttDownLinkFrameType;
     }
 }

@@ -6,6 +6,7 @@ import br.ufmg.watchdogs.server.mqtt.downlink.payload.impl.MqttDownLinkMessageIm
 import br.ufmg.watchdogs.server.mqtt.downlink.payload.parser.MqttDownLinkPayloadParser;
 import br.ufmg.watchdogs.server.mqtt.downlink.payload.parser.impl.MqttDownLinkAnimalSyncPayloadParserImpl;
 import br.ufmg.watchdogs.server.mqtt.downlink.service.MqttDownLinkService;
+import br.ufmg.watchdogs.server.mqtt.downlink.service.impl.MqttDownLinkServiceImpl;
 import br.ufmg.watchdogs.server.mqtt.downlink.topic.impl.MqttDownLinkTopicImpl;
 import br.ufmg.watchdogs.server.mqtt.uplink.payload.MqttUpLinkFrameType;
 import br.ufmg.watchdogs.server.mqtt.uplink.payload.MqttUpLinkMessage;
@@ -22,7 +23,7 @@ public class MqttUpLinkAnimalSyncServiceImpl implements MqttUpLinkService {
     private final MqttDownLinkService mqttDownLinkService;
 
     @Autowired
-    public MqttUpLinkAnimalSyncServiceImpl(MqttDownLinkService mqttDownLinkService) {
+    public MqttUpLinkAnimalSyncServiceImpl(MqttDownLinkServiceImpl mqttDownLinkService) {
         this.mqttDownLinkService = mqttDownLinkService;
     }
 
