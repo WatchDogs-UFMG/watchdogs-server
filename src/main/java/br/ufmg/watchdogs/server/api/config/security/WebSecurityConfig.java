@@ -25,7 +25,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private final AuthenticationServiceImpl authenticationService;
 
     @Autowired
-    public WebSecurityConfig(TokenServiceImpl tokenService, AuthenticationServiceImpl authenticationService) {
+    public WebSecurityConfig(
+            TokenServiceImpl tokenService,
+            AuthenticationServiceImpl authenticationService
+    ) {
         this.tokenService = tokenService;
         this.authenticationService = authenticationService;
     }
