@@ -22,17 +22,10 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final TokenServiceImpl tokenService;
-
     private final AuthenticationServiceImpl authenticationService;
 
     @Autowired
     public WebSecurityConfig(TokenServiceImpl tokenService, AuthenticationServiceImpl authenticationService) {
-        this.tokenService = tokenService;
-        this.authenticationService = authenticationService;
-    }
-
-    public WebSecurityConfig(boolean disableDefaults, TokenServiceImpl tokenService, AuthenticationServiceImpl authenticationService) {
-        super(disableDefaults);
         this.tokenService = tokenService;
         this.authenticationService = authenticationService;
     }
