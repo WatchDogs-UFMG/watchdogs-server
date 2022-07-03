@@ -27,6 +27,13 @@ public class Spot {
     )
     private List<Photo> photos = new ArrayList<>();
 
+    @OneToMany(
+            fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private List<Log> logs = new ArrayList<>();
+
     @OneToOne(
             fetch = FetchType.EAGER,
             cascade = CascadeType.ALL,
@@ -54,6 +61,7 @@ public class Spot {
             Long id,
             List<FoodRelease> foodReleases,
             List<Photo> photos,
+            List<Log> logs,
             Address address,
             String spotID,
             String name,
@@ -71,6 +79,7 @@ public class Spot {
         this.id = id;
         this.foodReleases = foodReleases;
         this.photos = photos;
+        this.logs = logs;
         this.address = address;
         this.spotID = spotID;
         this.name = name;
@@ -111,6 +120,14 @@ public class Spot {
     public Spot setPhotos(List<Photo> photos) {
         this.photos = photos;
         return this;
+    }
+
+    public List<Log> getLogs() {
+        return logs;
+    }
+
+    public void setLogs(List<Log> logs) {
+        this.logs = logs;
     }
 
     public Address getAddress() {
