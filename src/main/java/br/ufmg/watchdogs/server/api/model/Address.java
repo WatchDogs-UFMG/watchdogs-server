@@ -18,7 +18,7 @@ public class Address {
     )
     private Spot spot;
 
-    private Integer number;
+    private String number;
     private String street;
     private String neighbourhood;
     private String city;
@@ -34,7 +34,7 @@ public class Address {
     public Address(
             Long id,
             Spot spot,
-            Integer number,
+            String number,
             String street,
             String neighbourhood,
             String city,
@@ -75,11 +75,11 @@ public class Address {
         return this;
     }
 
-    public Integer getNumber() {
+    public String getNumber() {
         return number;
     }
 
-    public Address setNumber(Integer number) {
+    public Address setNumber(String number) {
         this.number = number;
         return this;
     }
