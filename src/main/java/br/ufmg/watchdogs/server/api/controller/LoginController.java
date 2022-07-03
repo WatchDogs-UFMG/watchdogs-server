@@ -3,6 +3,7 @@ package br.ufmg.watchdogs.server.api.controller;
 import br.ufmg.watchdogs.server.api.model.dto.LoginDto;
 import br.ufmg.watchdogs.server.api.model.form.LoginForm;
 import br.ufmg.watchdogs.server.api.model.User;
+import br.ufmg.watchdogs.server.api.service.TokenService;
 import br.ufmg.watchdogs.server.api.service.impl.TokenServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -17,8 +18,7 @@ import javax.validation.Valid;
 @RequestMapping("v1")
 public class LoginController {
 
-    private final TokenServiceImpl tokenService;
-
+    private final TokenService tokenService;
     private final AuthenticationManager authenticationManager;
 
     @Autowired

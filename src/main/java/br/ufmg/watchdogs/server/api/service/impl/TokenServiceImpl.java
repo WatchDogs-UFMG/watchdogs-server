@@ -3,6 +3,7 @@ package br.ufmg.watchdogs.server.api.service.impl;
 import br.ufmg.watchdogs.server.api.exception.MyInvalidTokenException;
 import br.ufmg.watchdogs.server.api.model.User;
 import br.ufmg.watchdogs.server.api.service.TokenService;
+import br.ufmg.watchdogs.server.api.service.UserService;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,7 @@ public class TokenServiceImpl implements TokenService {
     private final String SECRET = "A(RF*R_3cb0j3A0";
     private final long EXPIRATION = 86400000L; // 1 Day
 
-    private UserServiceImpl userService;
+    private final UserService userService;
 
     @Autowired
     public TokenServiceImpl(UserServiceImpl userService) {

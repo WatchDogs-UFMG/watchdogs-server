@@ -1,5 +1,6 @@
 package br.ufmg.watchdogs.server.api.service.impl;
 
+import br.ufmg.watchdogs.server.api.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -9,7 +10,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class AuthenticationServiceImpl implements UserDetailsService {
 
-    private final UserServiceImpl userService;
+    private final UserService userService;
 
     @Autowired
     public AuthenticationServiceImpl(UserServiceImpl userService) {

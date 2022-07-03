@@ -6,6 +6,8 @@ import br.ufmg.watchdogs.server.api.model.form.CreateUserForm;
 import br.ufmg.watchdogs.server.api.model.form.UpdateUserForm;
 import br.ufmg.watchdogs.server.api.model.Profile;
 import br.ufmg.watchdogs.server.api.model.User;
+import br.ufmg.watchdogs.server.api.service.CryptoService;
+import br.ufmg.watchdogs.server.api.service.ProfileService;
 import br.ufmg.watchdogs.server.api.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -16,8 +18,8 @@ import org.springframework.stereotype.Service;
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
-    private final ProfileServiceImpl profileService;
-    private final CryptoServiceImpl cryptoService;
+    private final ProfileService profileService;
+    private final CryptoService cryptoService;
 
     @Autowired
     public UserServiceImpl(UserRepository userRepository, ProfileServiceImpl profileService, CryptoServiceImpl cryptoService) {

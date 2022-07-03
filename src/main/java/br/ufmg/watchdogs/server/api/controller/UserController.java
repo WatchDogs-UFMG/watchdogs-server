@@ -4,6 +4,7 @@ import br.ufmg.watchdogs.server.api.model.dto.UserDto;
 import br.ufmg.watchdogs.server.api.model.form.CreateUserForm;
 import br.ufmg.watchdogs.server.api.model.form.UpdateUserForm;
 import br.ufmg.watchdogs.server.api.model.User;
+import br.ufmg.watchdogs.server.api.service.UserService;
 import br.ufmg.watchdogs.server.api.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -21,7 +22,7 @@ import java.net.URI;
 @RequestMapping("v1/user")
 public class UserController {
 
-    private final UserServiceImpl userService;
+    private final UserService userService;
 
     @Autowired
     public UserController(UserServiceImpl userService) {

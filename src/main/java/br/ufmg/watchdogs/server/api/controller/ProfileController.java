@@ -4,6 +4,7 @@ import br.ufmg.watchdogs.server.api.model.dto.ProfileDto;
 import br.ufmg.watchdogs.server.api.model.form.CreateProfileForm;
 import br.ufmg.watchdogs.server.api.model.form.UpdateProfileForm;
 import br.ufmg.watchdogs.server.api.model.Profile;
+import br.ufmg.watchdogs.server.api.service.ProfileService;
 import br.ufmg.watchdogs.server.api.service.impl.ProfileServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -21,7 +22,7 @@ import java.net.URI;
 @RequestMapping("v1/profile")
 public class ProfileController {
 
-    private final ProfileServiceImpl profileService;
+    private final ProfileService profileService;
 
     @Autowired
     public ProfileController(ProfileServiceImpl profileService) {
