@@ -1,6 +1,7 @@
 package br.ufmg.watchdogs.server.api.config.security;
 
 import br.ufmg.watchdogs.server.api.filter.TokenAuthenticationFilter;
+import br.ufmg.watchdogs.server.api.service.TokenService;
 import br.ufmg.watchdogs.server.api.service.impl.AuthenticationServiceImpl;
 import br.ufmg.watchdogs.server.api.service.impl.TokenServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
@@ -21,8 +23,8 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    private final TokenServiceImpl tokenService;
-    private final AuthenticationServiceImpl authenticationService;
+    private final TokenService tokenService;
+    private final UserDetailsService authenticationService;
 
     @Autowired
     public WebSecurityConfig(
@@ -55,11 +57,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and().addFilterBefore(new TokenAuthenticationFilter(this.tokenService), UsernamePasswordAuthenticationFilter.class);
     }
 
-    // Configurações de recursos estáticos (js, css, imagens, etc)
     @Override
     public void configure(WebSecurity web) throws Exception {
-        web.ignoring()
-                .antMatchers("/**.html", "/v2/api-docs", "/webjars/**", "/configuration/**", "/swagger-resources/**");
+        web.ignoring().antMatchers(
+                "/**.html",
+                "/v2/api-docs",
+                "/webjars/**",
+                "/configuration/**",
+                "/swagger-resources/**"
+        );
     }
 
     @Override

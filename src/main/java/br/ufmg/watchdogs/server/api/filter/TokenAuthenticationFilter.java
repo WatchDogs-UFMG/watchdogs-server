@@ -1,5 +1,6 @@
 package br.ufmg.watchdogs.server.api.filter;
 
+import br.ufmg.watchdogs.server.api.service.TokenService;
 import br.ufmg.watchdogs.server.api.service.impl.TokenServiceImpl;
 import br.ufmg.watchdogs.server.api.model.User;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -14,9 +15,9 @@ import java.io.IOException;
 
 public class TokenAuthenticationFilter extends OncePerRequestFilter {
 
-    private final TokenServiceImpl tokenService;
+    private final TokenService tokenService;
 
-    public TokenAuthenticationFilter(TokenServiceImpl tokenService) {
+    public TokenAuthenticationFilter(TokenService tokenService) {
         this.tokenService = tokenService;
     }
 
