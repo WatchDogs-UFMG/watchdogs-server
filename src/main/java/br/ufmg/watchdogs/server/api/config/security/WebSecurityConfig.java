@@ -42,21 +42,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Override
-    protected void configure(HttpSecurity http) throws Exception {
-
-        http.authorizeRequests()
-                .antMatchers(HttpMethod.GET, "/v1/profile").hasAnyRole("DEV", "ADMIN")
-                .antMatchers(HttpMethod.GET, "/v1/user").hasAnyRole("DEV", "ADMIN")
-                .antMatchers(HttpMethod.POST, "/v1/profile").permitAll()
-                .antMatchers(HttpMethod.POST, "/v1/login").permitAll()
-                .antMatchers(HttpMethod.POST, "/v1/user").permitAll()
-                .anyRequest().authenticated()
-                .and().csrf().disable()
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                .and().addFilterBefore(new TokenAuthenticationFilter(this.tokenService), UsernamePasswordAuthenticationFilter.class);
-    }
-
-    @Override
     public void configure(WebSecurity web) throws Exception {
         web.ignoring().antMatchers(
                 "/**.html",
@@ -71,5 +56,20 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     protected AuthenticationManager authenticationManager() throws Exception {
         return super.authenticationManager();
+    }
+
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+
+        http.authorizeRequests()
+                .antMatchers(HttpMethod.GET, "/v1/profile").hasAnyRole("DEV", "ADMIN")
+                .antMatchers(HttpMethod.GET, "/v1/user").hasAnyRole("DEV", "ADMIN")
+                .antMatchers(HttpMethod.POST, "/v1/profile").permitAll()
+                .antMatchers(HttpMethod.POST, "/v1/login").permitAll()
+                .antMatchers(HttpMethod.POST, "/v1/user").permitAll()
+                .anyRequest().authenticated()
+                .and().csrf().disable()
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and().addFilterBefore(new TokenAuthenticationFilter(this.tokenService), UsernamePasswordAuthenticationFilter.class);
     }
 }
