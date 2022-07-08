@@ -1,7 +1,7 @@
 package br.ufmg.watchdogs.server.test.unit.mqtt.uplink.payload;
 
-import br.ufmg.watchdogs.server.mqtt.uplink.payload.parser.impl.LogTriggerEventImpl;
-import br.ufmg.watchdogs.server.mqtt.uplink.payload.parser.impl.MqttUpLinkLogPayloadParser;
+import br.ufmg.watchdogs.server.mqtt.protocol.uplink.payload.parser.impl.LogTriggerEventImpl;
+import br.ufmg.watchdogs.server.mqtt.protocol.uplink.payload.parser.impl.MqttUpLinkLogPayloadParser;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

@@ -1,6 +1,6 @@
 package br.ufmg.watchdogs.server.test.unit.mqtt.downlink.payload;
 
-import br.ufmg.watchdogs.server.mqtt.downlink.payload.parser.impl.MqttDownLinkSpotSyncPayloadParserImpl;
+import br.ufmg.watchdogs.server.mqtt.protocol.downlink.payload.parser.impl.MqttDownLinkSpotSyncPayloadParserImpl;
 import br.ufmg.watchdogs.server.util.BitWiseUtil;
 import br.ufmg.watchdogs.server.util.DateTimeFormatterUtil;
 import org.junit.jupiter.api.Assertions;

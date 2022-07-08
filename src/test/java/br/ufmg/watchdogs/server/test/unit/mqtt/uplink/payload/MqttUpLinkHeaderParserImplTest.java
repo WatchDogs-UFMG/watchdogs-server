@@ -3,8 +3,8 @@ package br.ufmg.watchdogs.server.test.unit.mqtt.uplink.payload;
 import br.ufmg.watchdogs.server.util.DateTimeFormatterUtil;
 import br.ufmg.watchdogs.server.mqtt.protocol.FirmwareVersion;
 import br.ufmg.watchdogs.server.mqtt.protocol.ProtocolVersion;
-import br.ufmg.watchdogs.server.mqtt.uplink.payload.impl.MqttUpLinkFrameTypeImpl;
-import br.ufmg.watchdogs.server.mqtt.uplink.payload.parser.impl.MqttUpLinkHeaderParserImpl;
+import br.ufmg.watchdogs.server.mqtt.protocol.uplink.payload.impl.MqttUpLinkFrameTypeImpl;
+import br.ufmg.watchdogs.server.mqtt.protocol.uplink.payload.parser.impl.MqttUpLinkHeaderParserImpl;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

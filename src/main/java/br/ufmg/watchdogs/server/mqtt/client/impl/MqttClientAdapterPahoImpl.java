@@ -1,6 +1,7 @@
 package br.ufmg.watchdogs.server.mqtt.client.impl;
 
 import br.ufmg.watchdogs.server.mqtt.client.MqttClientAdapter;
+import br.ufmg.watchdogs.server.mqtt.client.MqttCallbackAdapter;
 import org.eclipse.paho.client.mqttv3.*;
 import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,8 +9,6 @@ import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
-
-import static java.nio.charset.StandardCharsets.*;
 
 @Service
 public class MqttClientAdapterPahoImpl implements MqttClientAdapter {
@@ -95,8 +94,8 @@ public class MqttClientAdapterPahoImpl implements MqttClientAdapter {
     }
 
     @Override
-    public void setSubListenerCallback(Object callback) {
-        this.mqttClient.setCallback((MqttCallback) callback);
+    public void setSubListenerCallback(MqttCallbackAdapter callback) {
+        this.mqttClient.setCallback((MqttCallback) callback.getCallback());
     }
 
     @Override

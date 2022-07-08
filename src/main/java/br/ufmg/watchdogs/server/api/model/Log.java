@@ -1,6 +1,6 @@
 package br.ufmg.watchdogs.server.api.model;
 
-import br.ufmg.watchdogs.server.mqtt.uplink.payload.parser.impl.LogTriggerEventImpl;
+import br.ufmg.watchdogs.server.mqtt.protocol.uplink.payload.parser.impl.LogTriggerEventImpl;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
