@@ -34,6 +34,7 @@ public class MqttCallbackAdapterPahoImpl implements MqttCallbackAdapter, MqttCal
         System.out.println("Connection lost with broker!");
         throwable.printStackTrace();
         this.mqttClientConnector.connect();
+        this.listen();
     }
 
     @Override
